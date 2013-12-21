@@ -35,7 +35,7 @@
                 <ul id="menu">
                     
                     {% include 'menu_item.html' with u='home' n='Главная' %}
-                    <li><a href="/uslugi/" title="Услуги" >Услуги</a></li>
+                    {% include 'menu_item.html' with u='uslugi' n='Услуги' %}
                     <li><a href="/blog/" title="Блог" >Блог</a></li>
                     {% include 'menu_item.html' with u='reviews' n='Отзывы' %}
                     <li><a href="/stati/" title="Статьи" >Статьи</a></li>
