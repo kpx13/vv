@@ -1,0 +1,5 @@
+{% if u in request_url %}
+    <li class="active"><span>{{ n }}</span></li>
+{% else %}
+    <li><a href="/{{ u }}/" title="{{ n }}">{{ n }}</a></li>
+{% endif %}

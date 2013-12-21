@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<title>Вспомнить всё - Вопросы и ответы</title>
+<!-- <base href="static/" /> -->
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="static/public/style/main.css?9" />
+<link rel="stylesheet" href="static/public/plugins/supersized/supersized.css" />
+
+<script type="text/javascript" src="static/public/js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="static/public/plugins/supersized/supersized.3.2.7.min.js"></script>
+
+<script type="text/javascript" src="static/public/plugins/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" href="static/public/plugins/fancybox/jquery.fancybox.css" />
+
+<script type="text/javascript">
+var cl = function(text){
+  return false;
+}
+function array_unique( array ) {
+    var p, i, j;
+    for(i = array.length; i;){
+        for(p = --i; p > 0;){
+            if(array[i] === array[--p]){
+                for(j = p; --p && array[i] === array[p];);
+                i -= array.splice(p + 1, j - p).length;
+            }
+        }
+    }
+    return true;
+}
+
+$(function(){
+    $('#menu .contactlink a').bind('click',function(event){
+        event.preventDefault();    
+        $('html, body').stop().animate({
+            scrollTop: ( $('html').height() - $(window).height() )
+            }, 1000/*, 'easeInOutQuart'*/);
+    });
+    
+    $.supersized({  
+        // Functionality
+        slideshow: 1,           // Slideshow on/off
+        autoplay: 1,            // Slideshow starts playing automatically
+        start_slide: 0,         // Start slide (0 is random)
+        stop_loop: 0,           // Pauses slideshow on last slide
+        random: 0,          // Randomize slide order (Ignores start slide)
+        slide_interval: 5000,       // Length between transitions
+        transition: 1,          // 0-None, 1-Fade, 2-Slide Top, 3-Slide Right, 4-Slide Bottom, 5-Slide Left, 6-Carousel Right, 7-Carousel Left
+        transition_speed: 5000,     // Speed of transition
+        new_window: 1,          // Image links open in new window/tab
+        pause_hover: 0,         // Pause slideshow on hover
+        keyboard_nav: 1,            // Keyboard navigation on/off
+        performance: 1,         // 0-Normal, 1-Hybrid speed/quality, 2-Optimizes image quality, 3-Optimizes transition speed //
+        image_protect: 1,           // Disables image dragging and right click with Javascript
+                                                   
+        // Size & Position                         
+        min_width: 0,           // Min width allowed (in pixels)
+        min_height: 0,          // Min height allowed (in pixels)
+        vertical_center: 1,         // Vertically center background
+        horizontal_center: 1,           // Horizontally center background
+        fit_always: 0,          // Image will never exceed browser width or height (Ignores min. dimensions)
+        fit_portrait: 1,            // Portrait images will not exceed browser height
+        fit_landscape: 0,           // Landscape images will not exceed browser width
+                                                   
+        // Components                           
+        slide_links: 'blank',   // Individual links for each slide (Options: false, 'num', 'name', 'blank')
+        thumb_links: 1,         // Individual thumb links for each slide
+        thumbnail_navigation: 0,            // Thumbnail navigation
+        slides: [           // Slideshow Images
+            {image : 'static/assets/gallery/1/1.jpg' },
+{image : 'static/assets/gallery/1/2.jpg' },
+{image : 'static/assets/gallery/1/6.jpg' },
+{image : 'static/assets/gallery/1/4.jpg' },
+        ],
+        // Theme Options               
+        progress_bar: 0,            // Timer for each slide                         
+        mouse_scrub: 0      
+    });
+    
+    var inputs = 'footer input, footer textarea, .form textarea, .form input';
+
+    $(document)
+    .on('focus', inputs, function(){            
+        if ($(this).val() == ''){
+          $(this).siblings('span').fadeOut(150);
+        }
+    })
+    .on('blur', inputs, function(){
+        if ($(this).val() == '')
+            $(this).siblings('span').fadeIn(150);
+    });
+    
+    $(inputs)
+    .each(function(){
+        if ($(this).val().replace(' ','') !== ''){
+            $(this).siblings('span').hide();
+        }
+    });
+    
+    $(document).on('click','.label',function(){
+        $(this).find('input,textarea').focus();
+    });
+    
+    var $sendBtn = $('footer form button, .form button');
+    
+    
+    $sendBtn.on('click', function(){
+        
+        var form = $(this).parents('form');
+        
+        var faq = $(this).parents('.form').length;
+        //cl('faq'+faq);
+        
+        form.find('input, textarea').each(function(){
+           var t = $(this);
+           if ( t.hasClass('required') && t.val() == '') {
+               t.addClass('empty');
+           }
+        });
+        
+        if ( form.find('.empty').length ) {
+            return false;
+        } else {
+            var info = form.serializeArray();
+
+            $.post('/ajax/send', info, function(data){
+                
+                alert(data);
+                form.find('input,textarea').val('');
+                
+            });
+        }
+        
+        return false;
+    });
+    
+    var ft = parseInt( $('#filter-box').css('top') );
+        
+    $(window).scroll(function(){
+        
+        var wh = $(window).height();
+        var st = $(window).scrollTop();
+        var bh = $('body').height();
+        var fh = $('#filter-box').height();
+        
+        //cl(wh);
+        
+        if ( st + wh > bh - 100 ){ //если конец
+            cl('!!!!!');
+            var top = $('#left').outerHeight() - fh;
+            $('#filter-box').css({'position': 'absolute', 'top': top });
+            
+        } else if ( st > 100 ){ // если середина
+            $('#filter-box').css({'position': 'fixed', 'top': '20px' });
+            
+        } else {
+            $('#filter-box').css({
+                'top': '20px',
+                'bottom': 'auto',
+                'position': 'absolute'
+            });
+        }
+    });    
+    
+    var loadOtzyv = function(){
+        var box = $('#otzyv-container');
+        
+        var res = '';
+        $('.otzyv').each(function(){
+            res += '-'+$(this).data('id')+',';
+        });
+        
+        var type = $('#filter li.active').data('type');
+        
+        $.post('/ajax/otzyv', {
+            offset: box.find('.otzyv').length,
+            resources: res,
+            type: type
+        }, function(data){            
+            if (data !== '')
+                box.append(data);
+            //else
+            //    $('#more').hide();
+        });
+    };
+    
+    if ($('#filter').length) {
+        var types = [];
+     
+        $('#filter li')
+        .each(function(){
+            var t = $(this).data('type');
+            $(this).attr('show', $('.otzyv[data-type='+t+']').length);            
+        });
+        $('#filter li').show();
+        //$('#filter li[show!=0]').show();
+        
+        $('#filter li').on('click', function(){
+            var type = $(this).data('type');
+            $(this).addClass('active').siblings().removeClass('active');
+            
+            if ( $(this).hasClass('all') ) {
+                
+                $('.otzyv').show();
+                
+            } else {            
+                
+                $('.otzyv[data-type!='+type+']').hide();
+                $('.otzyv[data-type='+type+']').show();                
+            }
+            
+            loadOtzyv();
+        });
+    }
+    $('.unselectable').on('selectstart', function(){
+        return false;
+    });    
+    
+    $('#more').on('click', function(){        
+        loadOtzyv();        
+    });
+    
+    $('#content a img').each(function(){
+       $(this)
+       .parent('a')
+       .addClass('fancy')
+       .attr('rel','fancybox');
+    });
+    
+    $('.fancy').fancybox();
+    
+    cl( $.fn.fancybox )
+    
+});
+</script>
+<!-- SCM Music Player http://scmplayer.net -->
+<!--<script type="text/javascript" src="http://scmplayer.hostjam.ru/script.js" 
+data-config="{'skin':'skins/black/skin.css','volume':71,'autoplay':false,'shuffle':true,'repeat':1,'placement':'top','showplaylist':false,'playlist':[ { 'title': 'Воин - Камелот', 'url': 'static/public/music/voin-kamelot.mp3' },{ 'title': 'Илия - Молитва Мироздания', 'url': 'static/public/music/Iliya - Molitva Mirozdaniya.mp3' },{ 'title': 'Город Солнца - Далеко', 'url': 'static/public/music/Gorod Solnca - Daleko.mp3' },{ 'title': 'Алихан Амхадов - Всё пройдет', 'url': 'static/public/music/Alihan-Amhadov-Vse-proydet.mp3' },{ 'title': 'Дольский', 'url': 'static/public/music/Aleksandr Dol\'skij - Vy ne pravy.mp3' },{ 'title': 'Елена Фролова', 'url': 'static/public/music/Elena Frolova - Ne uletaj vvys\'.mp3' } ]}" ></script>-->
+<!-- SCM Music Player script end -->
+
+
+<link rel="stylesheet" href="static/assets/components/gallery/css/web.css" type="text/css" />
+</head>
+<body>
+<div class="wrap">
+    <header>
+    <a id="logo">
+        <img src="/public/images/krest-logo.png" id="logo-img" />
+        <div class="big">Вспомнить всё</div>
+        <div class="small">Проснуться</div>
+    </a>
+    <div id="slogan">Добро пожаловать в мой мир...</div>
+</header>
+<ul id="menu">
+    <li class="first"><a href="http://vspomnit-vse.com/" title="Главная" >Главная</a></li>
+<li><a href="uslugi/" title="Услуги" >Услуги</a></li>
+<li><a href="blog/" title="Блог" >Блог</a></li>
+<li class="active"><span>Отзывы</span></li>
+<li><a href="stati/" title="Статьи" >Статьи</a></li>
+<li><a href="translyacziya" title="Трансляция" >Трансляция</a></li>
+<li><a href="faq" title="Вопросы и ответы" >Вопросы и ответы</a></li>
+<li><a href="obo-mne" title="Обо мне" >Обо мне</a></li>
+<li><a href="knigi" title="Книги" >Книги</a></li>
+<li><a href="znaki-silyi" title="Знаки силы" >Знаки силы</a></li>
+<li class="last"><a href="kosmicheskie-pokony" title="Космические поконы" >Космические поКОНы</a></li>
+
+    <li class="contactlink"><a href="javascript:">Контакты</a></li>
+</ul>
+    <div id="content">
+        <div id="left">
+            <h1>Отзывы</h1>
+            
+            <div id="otzyv-container">
+            <a href="otzyivyi/aleksej" class="otzyv" data-type="98" data-id="166">
+    <div class="otype hide">98</div>
+    <h3>Алексей</h3>
+    
+    <img src="/public/images/otzyvy/alex.png" />
+    
+</a>
+<a href="otzyivyi/roman" class="otzyv" data-type="155" data-id="165">
+    <div class="otype hide">155</div>
+    <h3>Роман</h3>
+    
+    <img src="/public/images/otzyvy/HRk7AKhVr58.jpg" />
+    
+</a>
+<a href="otzyivyi/vitalik-pavlyuk" class="otzyv" data-type="3" data-id="164">
+    <div class="otype hide">3</div>
+    <h3>Виталик Павлюк</h3>
+    
+    <img src="/public/images/otzyvy/vitalik.png" />
+    
+</a>
+<a href="otzyivyi/roman-burlakov" class="otzyv" data-type="46" data-id="163">
+    <div class="otype hide">46</div>
+    <h3>Роман Бурлаков</h3>
+    
+    
+    <iframe width="640" height="360" src="//www.youtube.com/embed/-V16narN-bw" frameborder="0" allowfullscreen></iframe>
+</a>
+<a href="otzyivyi/pavel-ivanov" class="otzyv" data-type="46" data-id="162">
+    <div class="otype hide">46</div>
+    <h3>Павел Иванов</h3>
+    
+    
+    <iframe width="640" height="360" src="//www.youtube.com/embed/XEdPXVHPIIk" frameborder="0" allowfullscreen></iframe>
+</a>
+<a href="otzyivyi/samarin-andrej" class="otzyv" data-type="46" data-id="161">
+    <div class="otype hide">46</div>
+    <h3>Самарин Андрей</h3>
+    
+    
+    <iframe width="640" height="360" src="//www.youtube.com/embed/pJhKRVBprIQ" frameborder="0" allowfullscreen></iframe>
+</a>
+<a href="otzyivyi/aleksej-lesnichenko" class="otzyv" data-type="46" data-id="160">
+    <div class="otype hide">46</div>
+    <h3>Алексей Лесниченко</h3>
+    
+    
+    <iframe width="640" height="360" src="//www.youtube.com/embed/omMx1r1cr8I" frameborder="0" allowfullscreen></iframe>
+</a>
+<a href="otzyivyi/mixail-ivanov" class="otzyv" data-type="3" data-id="159">
+    <div class="otype hide">3</div>
+    <h3>Михаил Иванов, Первый круг "Целительство"</h3>
+    
+    
+    <iframe width="640" height="360" src="//www.youtube.com/embed/Fh1YY5_XPXs" frameborder="0" allowfullscreen></iframe>
+</a>
+<a href="otzyivyi/sergej-bochkaryov" class="otzyv" data-type="46" data-id="158">
+    <div class="otype hide">46</div>
+    <h3>Сергей Бочкарёв</h3>
+    
+    
+    <iframe width="640" height="360" src="//www.youtube.com/embed/cz9GkXEYMgA" frameborder="0" allowfullscreen></iframe>
+</a>
+<a href="otzyivyi/prosmotr-kresta" class="otzyv" data-type="16" data-id="153">
+    <div class="otype hide">16</div>
+    <h3>Просмотр Креста</h3>
+    
+    <img src="/public/images/otzyvy/mozg.png" />
+    
+</a>
+            </div>
+            <div id="more" class="unselectable">Ещё отзывы &gt;</div>
+            
+        </div>
+        <div id="right">
+            <div id="filter-box">
+                <h2>Фильтр отзывов</h2>
+                <ul id="filter">
+                    <li class="active all">Любые</li>
+                    <li data-type="155">Служение</li>
+<li data-type="8">Очищение души</li>
+<li data-type="16">Исцеление славянского духовного креста</li>
+<li data-type="18">Женские любовные игры</li>
+<li data-type="21">Кундалини Рейки</li>
+<li data-type="3">Обучение</li>
+<li data-type="46">Регрессии в прошлые жизни</li>
+                </ul>
+            </div>
+            <!--[ [$smartresponder] ]-->
+        </div>
+    </div>
+    <footer>
+    <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+    <div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj,moikrug,gplus"></div> 
+    <p id="copy">
+        <a href="http://vk.com/id193537167">http://vk.com/id193537167</a><br/>
+        <a href="http://vk.com/club46633921">http://vk.com/club46633921</a><br/><br/>
+        &copy; 2012&ndash;2013, Vspomnit-Vse.com. Все права защищены.</p>
+    <form>
+        <fieldset>
+            <label>
+                <span>Имя</span>
+                <input name="name" />
+            </label>
+            <label>
+                <span>Телефон</span>
+                <input name="phone" />
+            </label>
+            <label>
+                <span>E-mail</span>
+                <input name="email" />
+            </label>
+            <label>
+                <span>Skype</span>
+                <input name="skype" />
+            </label>
+        </fieldset>
+        <fieldset>
+            <label>
+                <span>Сообщение</span>
+                <textarea name="message"></textarea>
+            </label>
+            <input name="fakeinput" type="hidden" />
+            <button>Отправить</button>
+        </fieldset>
+    </form>
+</footer>
+</div>
+</body>
+</html>

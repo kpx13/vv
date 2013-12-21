@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block head %}
+    
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="_active"><a href="#">Контакты</a></li>
+{% endblock %}
+
+{% block content %}
+    <div class="page-contacts">
+        <h5>Контакты</h5>
+
+        <div class="contacts__left">
+<!--             <p>Адрес:<span class="contact__adress"> г. Москва, ул Название, д. 55, офис 55</span></p> -->
+
+            <p>Звоните:<span class="contact__phone">  +7 (499) 398-04-52 </span></p>
+
+            <p>Пишите: <a href="mailto:hello@h2h-wedding.com"> hello@h2h-wedding.com </a></p>
+
+            <div class="contacts__map">
+                <iframe width="615" height="395" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                        src="https://maps.google.ru/maps?f=q&amp;source=s_q&amp;hl=ru&amp;geocode=&amp;q=%D0%B3.+%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&amp;aq=&amp;sll=55.788729,37.537756&amp;sspn=0.354021,1.056747&amp;ie=UTF8&amp;hq=&amp;hnear=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4+%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&amp;t=m&amp;z=10&amp;ll=55.755826,37.6173&amp;output=embed"></iframe>
+                <br/>
+                <small><a
+                        href="https://maps.google.ru/maps?f=q&amp;source=embed&amp;hl=ru&amp;geocode=&amp;q=%D0%B3.+%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&amp;aq=&amp;sll=55.788729,37.537756&amp;sspn=0.354021,1.056747&amp;ie=UTF8&amp;hq=&amp;hnear=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0,+%D0%B3%D0%BE%D1%80%D0%BE%D0%B4+%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0&amp;t=m&amp;z=10&amp;ll=55.755826,37.6173"
+                        style="color:#0000FF;text-align:left"></a></small>
+            </div>
+        </div>
+        <div class="contacts__right">
+            <div class="contacts__right__title">
+                {% if feedback_ok %}
+                    Спасибо! <br />Ваше сообщение <span>отправлено</span>.
+                {% else %}
+                    Есть <br/>вопросы? <span>Напишите нам!</span> 
+                {% endif %}
+            </div>
+                
+            <div class="contact__form">
+                <form method="POST">
+                    {% csrf_token %}
+                    <span>Ваше имя</span>
+                    <input type="text" name="name" {% if form.name.errors %} style='border: 1px solid red' {% endif %} value='{% if form.name.value %}{{ form.name.value }}{% endif %}'>
+                    <span>Телефон или эл. почта</span>
+                    <input type="text" name="phone" {% if form.phone.errors %} style='border: 1px solid red' {% endif %} value='{% if form.phone.value %}{{ form.phone.value }}{% endif %}'>
+                    <span>Текст сообщения</span>
+                    <textarea name="msg" id="" {% if form.msg.errors %} style='border: 1px solid red' {% endif %}>{% if form.msg.value %}{{ form.msg.value }}{% endif %}</textarea>
+                    <input id="contact-send" type="submit" value="Отправить">
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+{% block title %}Свадебные идеи{% endblock %}
+
+{% block breadcrumbs %}
+    <li><a href="/news/">Новости</a></li>
+    <li class="_active"><a href="#">{{ new.title }}</a></li>
+{% endblock %}
+
+{% block content %}
+
+    <h4>{{ new.title }}</h4>
+
+    <div class="page-idea">
+        <article>
+            {{ new.content_more|safe }}
+        </article>
+
+    </div>
+    
+{% endblock %}

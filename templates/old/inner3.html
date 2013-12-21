@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/colorbox.css"/>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/jquery.colorbox-min.js"></script>
+</head>
+<body>
+<div class="layout">
+    <div class="popup__layout"></div>
+    <div class="popup popup-sign">
+        <span class="popup___close"></span>
+        <div class="popup__title"> Записаться на тренировку
+        </div>
+        <form action="">
+            <span class="back"> <input type="text" placeholder="Ваше имя" name="user-name"/>  </span>
+            <span class="back"> <input type="text" placeholder="Ваш телефон" name="user-phone"/>  </span>
+            <span class="back"> <input type="text" placeholder="Ваш email" name="user-email"/>  </span>
+            <span class="back"> <input type="text" placeholder="Дата и время тренировки" name="user-time"/>  </span>
+            <span class="back"> <input type="text" placeholder="Номер карты" name="user-card"/>  </span>
+            <span class="back form-btn btn-yellow"> <input type="submit" value="Записаться"/> </span>
+        </form>
+
+    </div>
+    <div class="popup popup-get">
+        <span class="popup___close"></span>
+        <div class="popup-get__title">
+            <h5>Запишитесь на пробную тренировку и получите <span class="text_red">диагностику организма <br/>
+                        в подарок!</span></h5>
+        </div>
+        <form action="">
+            <span class="back"> <input type="text" placeholder="Ваше имя" name="user-name"/>  </span>
+            <span class="back"> <input type="text" placeholder="Ваш телефон" name="user-phone"/>  </span>
+            <span class="back"> <input type="text" placeholder="Ваш email" name="user-email"/>  </span>
+            <span class="back"> <input type="text" placeholder="Дата и время тренировки" name="user-time"/>  </span>
+            <span class="back form-btn btn-yellow"> <input type="submit" value="Получить"/> </span>
+        </form>
+
+    </div>
+    <div class="wrapper">
+        <header>
+            <nav class="g-nav">
+                <ul>
+                    <li><a href="#">Как это работает? </a></li>
+                    <li><a href="#">Мои цели </a>
+                        <ul>
+                            <li> <a href="#">Похудеть  </a> </li>
+                            <li><a href="#">   Увеличить мышцы</a> </li>
+                            <li><a href="#"> Избавиться от боли в спине </a>  </li>
+                            <li><a href="#">   Восстановиться после травм </a></li>
+                            <li><a href="#">  Комплексные программы</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Технологии</a></li>
+                    <li><a href="#">О студии</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header__contacts">
+                <span class="header__contacts__phone">   +7 (496) 586-52-63</span>
+                <a class="btn__grey back" id="sign" href="#">Записаться на
+                    тренировку</a>
+
+            </div>
+            <a class="homelink" href="#"></a>
+        </header>
+
+        <div class="container">
+
+            <aside class="sidebar">
+                <ul class="sidebar__nav">
+                   <li><a href="#">Наши тренера</a></li>
+                   <li><a href="#">Расписание </a></li>
+                   <li><a href="#">Клубная карта</a></li>
+                   <li><a href="#">Специальное предложение</a></li>
+                </ul>
+                <section class="sidebar__box">
+                    <h4>Подписаться на рассылку<br/>
+                        «5 ГЛАВНЫХ ОШИБОК <br/>ПРИ ПОХУДЕНИИ»: </h4>
+
+                    <form action="">
+                        <span class="back"> <input type="text" placeholder="Ваш email" name="user-email"/>  </span>
+                        <span class="back form-btn btn-green"> <input type="submit" value="Отправить"/> </span>
+                    </form>
+
+                </section>
+                <section class="sidebar__box">
+                    <h5>Запишитесь на пробную тренировку и получите <span class="text_red">диагностику организма <br/>
+                        в подарок!</span></h5>
+                    <span class="back form-btn btn-yellow"> <input type="submit" id="get" value="Получить"/> </span>
+                </section>
+                <section class="sidebar__info">
+                    <img src="img/info.jpg"/>
+                    <h4 class="sidebar__info__title"><a href="#">Название комплекса</a></h4>
+
+                    <div class="sidebar__info__text"> Описание комплекса</div>
+                </section>
+                <section class="sidebar__review__wrap">
+                    <div class="sidebar__review__title"> Отзывы</div>
+                    <div class="sidebar__review">
+                        <div class="sidebar__review__name"> Аня Сетова, 23 года
+                        </div>
+                        <div class="sidebar__review__text"> “Мне все понравилось, все прошло замечательно ...”
+                        </div>
+                    </div>
+                    <div class="sidebar__review">
+                        <div class="sidebar__review__name">Игорь Матеев, 34 года
+                        </div>
+                        <div class="sidebar__review__text">“Отличный тренерт, хороший состав. Подобрали программу, все
+                            проходит замечательно!”
+                        </div>
+                    </div>
+                    <div class="sidebar__review">
+                        <div class="sidebar__review__name">Аня Сетова, 23 года
+                        </div>
+                        <div class="sidebar__review__text">“Мне все понравилось, все прошло замечательно ...”
+                        </div>
+                    </div>
+                    <div class="sidebar__review__link"><a href="#" class="sidebar__review__more"> </a></div>
+
+                </section>
+                <section class="sidebar__like-boxes">
+                </section>
+            </aside>
+            <div class="content">
+
+                <div class="breadcrumbs">
+                    <a href="#">Главная</a>
+                    <a href="#" class="active">О студии</a>
+                </div>
+                 <div class="gallery">
+                     <a class="gallery__item" href="img/gallery__item.jpg" title=""><img src="img/gallery__item.jpg" alt=""/></a>
+                     <a class="gallery__item" href="img/gallery__item.jpg" title=""><img src="img/gallery__item.jpg" alt=""/></a>
+                     <a class="gallery__item" href="img/gallery__item.jpg" title=""><img src="img/gallery__item.jpg" alt=""/></a>
+                     <a class="gallery__item" href="img/gallery__item.jpg" title=""><img src="img/gallery__item.jpg" alt=""/></a>
+                     <a class="gallery__item" href="img/gallery__item.jpg" title=""><img src="img/gallery__item.jpg" alt=""/></a>
+                     <a class="gallery__item" href="img/gallery__item.jpg" title=""><img src="img/gallery__item.jpg" alt=""/></a>
+
+                     <a class="gallery__item" href="img/gallery__item.jpg" title=""><img src="img/gallery__item.jpg" alt=""/></a>
+                     <a class="gallery__item" href="img/gallery__item.jpg" title=""><img src="img/gallery__item.jpg" alt=""/></a>
+                     <a class="gallery__item" href="img/gallery__item.jpg" title=""><img src="img/gallery__item.jpg" alt=""/></a>
+
+                 </div>
+
+            </div>
+
+        </div>
+        <footer>
+            <div class="footer__soc">
+                <div class="footer__soc__title">Будь в курсе спецпредложений:
+
+                </div>
+                <div class="footer__soc__block"></div>
+            </div>
+            <div class="footer__slider__wrap">
+                <div class="footer__slider">
+                    <div class="footer__slider__container">
+                        <div class="footer__slider__i"><img src="img/footer-preview.jpg"/></div>
+                        <div class="footer__slider__i"><img src="img/footer-preview.jpg"/></div>
+                        <div class="footer__slider__i"><img src="img/footer-preview.jpg"/></div>
+                        <div class="footer__slider__i"><img src="img/footer-preview.jpg"/></div>
+                        <div class="footer__slider__i"><img src="img/footer-preview.jpg"/></div>
+                        <div class="footer__slider__i"><img src="img/footer-preview.jpg"/></div>
+                        <div class="footer__slider__i"><img src="img/footer-preview.jpg"/></div>
+                    </div>
+
+                </div>
+                <div class="footer__slider__next"></div>
+                <div class="footer__slider__prev"></div>
+
+            </div>
+            <div class="footer__contacts">
+                8 915 062-62-63
+                <span>© 2011 - 2013 «Fit-n-go!»</span>
+            </div>
+
+        </footer>
+    </div>
+    <div class="layout__bottom"></div>
+</div>
+</body>
+</html>

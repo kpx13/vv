@@ -1,0 +1,20 @@
+<form action="" method='POST'>
+    <input type='hidden' name='action' value='homeform'>
+    {% csrf_token %}
+
+    <div class="form__desc">Данное предложение не является офертой. После отправки заявки менеджер свяжется с
+        Вами для проведения подробной консультации и уточнения условий приобретения абонемента
+    </div>
+    <div class="block-form__btn">
+        <span class="back form-btn btn-yellow"> 
+        <input type="submit" value="Забронировать абонемент"> </span>
+    </div>
+    <p><span class="back"> 
+        <input type="text" placeholder="Ваше имя" name="name" value='{% if hform.name.value %}{{ hform.name.value }}{% endif %}' {% if hform.errors.name %} style='border: 1px solid red' {% endif %} />
+    </span></p>
+
+    <p><span class="back"> 
+        <input type="text" placeholder="Ваш телефон" name="phone" value='{% if hform.phone.value %}{{ hform.phone.value }}{% endif %}' {% if hform.errors.phone %} style='border: 1px solid red' {% endif %}/>
+    </span></p>
+    
+</form>

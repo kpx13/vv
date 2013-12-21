@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}            
+    <div id="otzyv-container">
+        <a href="otzyivyi/aleksej" class="otzyv">
+            <h3>Алексей</h3>
+            
+            <img src="/static/public/images/otzyvy/alex.png" />
+            
+        </a>
+        <a href="otzyivyi/roman" class="otzyv">
+            <h3>Роман</h3>
+            
+            <img src="/static/public/images/otzyvy/HRk7AKhVr58.jpg" />
+            
+        </a>
+        <a href="otzyivyi/vitalik-pavlyuk" class="otzyv">
+            <h3>Виталик Павлюк</h3>
+            
+            <img src="/static/public/images/otzyvy/vitalik.png" />
+            
+        </a>
+        <a href="otzyivyi/roman-burlakov" class="otzyv">
+            <h3>Роман Бурлаков</h3>
+        
+            <iframe width="640" height="360" src="//www.youtube.com/embed/-V16narN-bw" frameborder="0" allowfullscreen></iframe>
+        </a>
+        
+        <a href="otzyivyi/prosmotr-kresta" class="otzyv">
+            <h3>Просмотр Креста</h3>
+            
+            <img src="/static/public/images/otzyvy/mozg.png" />
+            
+        </a>
+    </div>
+    
+<!--     <div id="more" class="unselectable">Ещё отзывы &gt;</div> -->
+{% endblock %}
+
+{% block content_right %}
+    <div id='filter-box'>
+        <h2>Фильтр отзывов</h2>
+        <ul class="reviews-filter">
+            <li><a href='#'>Любые</a></li>
+            <li class="active"><a href='#'>Служение</a></li>
+            <li><a href='#'>Очищение души</a></li>
+            <li>Исцеление славянского духовного креста</li>
+            <li>Женские любовные игры</li>
+            <li>Кундалини Рейки</li>
+            <li>Обучение</li>
+            <li>Регрессии в прошлые жизни</li>
+        </ul>
+    </div>
+{% endblock %}

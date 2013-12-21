@@ -1,0 +1,38 @@
+{% extends 'base_wrap.html' %}
+
+{% block wrapper %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class='message-wrapper'>
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message|safe }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <div class="container">
+        <aside class="sidebar">
+
+            {% if menu_cat.submenu.all %}
+                <ul class="sidebar__nav">
+                    {% for s in menu_cat.submenu.all %}
+                        <li><a href="{{ s.href }}" {% if s.href in request_url %} class='active' {% endif %}>{{ s.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            
+            {% include 'right_side.html' %}
+        </aside>
+        
+        <div class="content">
+            <div class="breadcrumbs">
+                <a href="/">Главная</a>
+                {% block breadcrumbs %}
+                {% endblock %}
+            </div>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

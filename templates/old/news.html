@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if 'news' in request_url %}Новости{% else %}Комплексные программы{% endif %}{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="#" class="active">{% if 'news' in request_url %}Новости{% else %}Комплексные программы{% endif %}</a>
+{% endblock %}
+
+{% block content %}
+    {% for i in news %}
+        <div class="news">
+            <img src="/media/{{ i.image }}" alt="{{ i.title }}" />
+            <h4>{{ i.title }}</h4>
+            {{ i.content|safe }}
+        </div>
+    {% endfor %}
+{% endblock %}

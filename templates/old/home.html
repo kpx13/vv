@@ -1,0 +1,77 @@
+{% extends 'base_wrap.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/styles.css">
+    
+    {% if show_hform %}
+    <script>
+        location.hash = 'homeform';
+    </script>
+    {% endif %}
+    
+{% endblock %}
+
+{% block wrapper %}
+    <div class="slider__wrap">
+        {% if need_slider %}
+            <div class="slider">
+                {% for s in slider %}
+                    <div class="slider__i {% if forloop.first %}active{% endif %}" style='background: url(/media/{{ s.image }}) no-repeat 0 0;'>
+                        {{ s.content|safe }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="slider__next"></div>
+            <div class="slider__prev"></div>
+        {% else %}
+            <img src='/media/{{ slider.0.image }}' />
+        {% endif %}
+    </div>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class='message-wrapper'>
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message|safe }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <div class="container">
+        <aside class="sidebar">
+            {% include 'right_side.html' %}
+        </aside>
+        
+        <div class="content">
+            
+            <div class="main-page" id='block'>
+
+                {{ c1|safe }}
+                
+                
+                <section class=" block block_form _grey" id='homeform'>
+                    {% include 'homeform.html' %}
+                </section>
+                
+                {{ c2|safe }}
+                
+                <section class=" block block_form _grey">
+                    <h6>только до 20 декабря, в связи с открытием, <br/>
+                        мы предоставляем скидку до 50% на покупку <br/>
+                        любого абонемента! </h6>
+
+                    {% include 'homeform.html' %}
+                </section>
+                
+                
+                {{ c3|safe }}
+
+            </div>
+            
+        </div>
+
+    </div>
+{% endblock %}

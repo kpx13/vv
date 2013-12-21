@@ -1,0 +1,30 @@
+.reviews-filter {
+    clear: both;
+    margin: 0 0 20px !important;    
+}
+
+.reviews-filter li{
+    list-style: none;
+    padding: 4px 9px;
+    background: #EEE;
+    cursor: pointer;
+    clear: both;
+    float: left;
+    margin: 6px 0 !important;
+
+}
+.reviews-filter li.active{
+    background: #6236f2;
+    color: #fff;
+    cursor: default;
+}
+
+.reviews-filter li a{
+    color: #000;
+}
+.reviews-filter li.active a{
+    color: #fff;
+}
+
+#filter-box {
+}

@@ -1,0 +1,53 @@
+<section class="sidebar__box">
+    <h4>Подписаться на рассылку<br/>
+        «5 ГЛАВНЫХ ОШИБОК <br/>ПРИ ПОХУДЕНИИ»: </h4>
+
+    <form method='POST' action=''>
+        <span class="back"> <input type="text" placeholder="Ваш email" name="email"/>  </span>
+        <span class="back form-btn btn-green"> <input type="submit" value="Отправить"/> </span>
+        <input type='hidden' name='action' value='subscribe'>
+        {% csrf_token %}
+    </form>
+
+</section>
+
+<section class="sidebar__box">
+    <h5>Запишитесь на пробную тренировку и получите <span class="text_red">диагностику организма <br/>
+        в подарок!</span></h5>
+    <span class="back form-btn btn-yellow"> 
+        <input type="submit" id="get" value="Получить"/> 
+    </span>
+</section>
+
+<section class="sidebar__info">
+    {{ complex|safe }}
+</section>
+
+<section class="sidebar__review__wrap">
+    <div class="sidebar__review__title"> Отзывы</div>
+    
+    {% for r in reviews %}
+        <div class="sidebar__review">
+            <a href='/reviews' class='review_name'><div class="sidebar__review__name"> {{ r.name }}, {{ r.age }}</div></a>
+            <div class="sidebar__review__text"> “{{ r.text }}” </div>
+        </div>
+    {% endfor %}
+    
+<!--     <div class="sidebar__review__link"><a href="/reviews/" class="sidebar__review__more"> </a></div> -->
+
+</section>
+
+<section class="sidebar__like-boxes">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/ru_RU/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="fb-like-box" data-href="https://www.facebook.com/fitngo.ru" data-width="250" data-height="300"
+        data-show-faces="true" data-header="true" data-stream="true" data-show-border="true" style='margin-top: 40px'>
+    </div>
+</section>
