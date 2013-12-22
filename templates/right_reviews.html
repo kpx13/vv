@@ -1,29 +1,10 @@
-
 <h2>Отзывы </h2>
-
-<a href="otzyivyi/tatyana-52-goda-regressiya-i-trening-czelitelstvo-vsevolozhsk" class="otzyv" data-type="3" data-id="80">
-    <div class="otype hide">3</div>
-    <h3>Татьяна 52 года, регрессия и тренинг "Целительство", г.Всеволожск</h3>
-    К Марату меня привело желание перемен в жизни, кроме этого, хотелось найти причины некоторых заболеваний и путь к исцелению.
-Сначала мы прошлись от сегодняшнего дня до моего рождения&#8230;
-    
-    
-</a>
-<a href="otzyivyi/sergej-habarovsk" class="otzyv" data-type="98" data-id="147">
-    <div class="otype hide">98</div>
-    <h3>Сергей, г. Хабаровск</h3>
-    
-    
-    
-</a>
-<a href="otzyivyi/valentin-demyishev-pervyij-krug-czelitelstvo" class="otzyv" data-type="3" data-id="107">
-    <div class="otype hide">3</div>
-    <h3>Валентин Демышев, Первый круг "Целительство"</h3>
-    
-    
-    <iframe width="640" height="360" src="//www.youtube.com/embed/X6-TxL8fgEk" frameborder="0" allowfullscreen></iframe>
-</a>
-
+    {% for r in recent_reviews %}
+        <a href="/review/{{ r.slug }}/" class="otzyv">
+            <h3>{{ r.name }}</h3>    
+            {{ r.desc|safe }}
+        </a>
+    {% endfor %}
 <h2>Не забудь подписаться!</h2>
 <!-- SmartResponder.ru subscribe form code (begin) -->
 <link rel="stylesheet" href="https://imgs.smartresponder.ru/e1bbeb24091b44f1f4048bbc87edacd11278fd23/">

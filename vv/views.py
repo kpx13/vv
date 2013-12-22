@@ -19,15 +19,13 @@ PAGINATION_COUNT = 10
 
 REDIRECT_URLS = {
                     'otzyivyi': 'reviews',
-                    'uslugi/obuchenie': 'obuchenie',
-                    'uslugi/ochishhenie-dushi': 'ochishhenie-dushi',
                  } 
 
 def get_common_context(request):
     c = {}
     c['request_url'] = request.path
     c['is_debug'] = settings.DEBUG
-    c['recent_reviews'] = Review.objects.all()[:5]
+    c['recent_reviews'] = Review.objects.filter(at_right=True)[:5]
     c.update(csrf(request))
     return c
 
@@ -84,3 +82,13 @@ def reviews(request, cat_name=None):
     c['items'] = items
     
     return render_to_response('reviews.html', c, context_instance=RequestContext(request))
+
+def review(request, name):
+    c = get_common_context(request)
+    r = Review.get_by_slug(name)
+    if r:
+        c.update({'p': r})
+        c['title'] = r.name
+        return render_to_response('page.html', c, context_instance=RequestContext(request))
+    else:
+        raise Http404()

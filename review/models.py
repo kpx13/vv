@@ -5,7 +5,7 @@ import pytils
 
 class Category(models.Model):
     name = models.CharField(max_length=128, verbose_name=u'название')
-    slug = models.SlugField(verbose_name=u'url', unique=True, blank=True, help_text=u'Заполнять не нужно')
+    slug = models.SlugField(max_length=128, verbose_name=u'url', unique=True, blank=True, help_text=u'Заполнять не нужно')
     
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -36,7 +36,8 @@ class Review(models.Model):
     desc = RichTextField(verbose_name=u'вступительная часть')
     content = RichTextField(verbose_name=u'содержимое')
     date = models.DateField(auto_now_add=True, blank=True, verbose_name=u'дата')
-    slug = models.SlugField(verbose_name=u'url', unique=True, blank=True, help_text=u'Заполнять не нужно')
+    slug = models.SlugField(max_length=128, verbose_name=u'url', unique=True, blank=True, help_text=u'Заполнять не нужно')
+    at_right = models.BooleanField(u'показывать в правой части', blank=True, default=True)
     
     def save(self, *args, **kwargs):
         if not self.slug:
