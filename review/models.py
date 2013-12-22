@@ -18,7 +18,11 @@ class Category(models.Model):
             return Category.objects.get(slug=slug)
         except:
             return None
-        
+    
+    @property
+    def count(self):
+        return Review.objects.filter(category=self).count()
+    
     class Meta:
         verbose_name = u'категория'
         verbose_name_plural = u'категории'

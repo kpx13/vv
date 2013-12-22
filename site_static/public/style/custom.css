@@ -20,11 +20,31 @@
 }
 
 .reviews-filter li a{
-    color: #000;
+    color: #333;
 }
 .reviews-filter li.active a{
     color: #fff;
 }
 
 #filter-box {
+}
+
+.pagination {
+    margin: 0 auto;
+    clear: both;
+    text-align: center;
+}
+
+.pagination .page-numbers{
+    padding: 4px 9px;
+    background: #EEE;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none !important;
+}
+
+.pagination .page-numbers.active{
+    background: #6236f2;
+    color: #fff;
+    cursor: default;
 }

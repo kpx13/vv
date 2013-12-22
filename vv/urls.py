@@ -21,6 +21,7 @@ urlpatterns = patterns('',
 
     url(r'^$', views.home),
     url(r'^home/$', views.home),
+    url(r'^reviews/(?P<cat_name>[\w-]+)/$', views.reviews),
     url(r'^reviews/$', views.reviews),
     url(r'^otzyivyi/$', views.reviews),
     url(r'^services/$', views.services),

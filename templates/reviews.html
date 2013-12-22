@@ -2,53 +2,38 @@
 
 {% block content %}            
     <div id="otzyv-container">
-        <a href="otzyivyi/aleksej" class="otzyv">
-            <h3>Алексей</h3>
-            
-            <img src="/static/public/images/otzyvy/alex.png" />
-            
-        </a>
-        <a href="otzyivyi/roman" class="otzyv">
-            <h3>Роман</h3>
-            
-            <img src="/static/public/images/otzyvy/HRk7AKhVr58.jpg" />
-            
-        </a>
-        <a href="otzyivyi/vitalik-pavlyuk" class="otzyv">
-            <h3>Виталик Павлюк</h3>
-            
-            <img src="/static/public/images/otzyvy/vitalik.png" />
-            
-        </a>
-        <a href="otzyivyi/roman-burlakov" class="otzyv">
-            <h3>Роман Бурлаков</h3>
-        
-            <iframe width="640" height="360" src="//www.youtube.com/embed/-V16narN-bw" frameborder="0" allowfullscreen></iframe>
-        </a>
-        
-        <a href="otzyivyi/prosmotr-kresta" class="otzyv">
-            <h3>Просмотр Креста</h3>
-            
-            <img src="/static/public/images/otzyvy/mozg.png" />
-            
-        </a>
+        {% for r in items %}
+            <a href="/review/{{ r.slug }}/" class="otzyv">
+                <h3>{{ r.name }}</h3>    
+                {{ r.desc|safe }}
+            </a>
+        {% endfor %}
     </div>
     
 <!--     <div id="more" class="unselectable">Ещё отзывы &gt;</div> -->
+    {% if need_pagination %}
+        <div class="pagination">
+            {% if items.has_previous %}
+                <a class="page-numbers" href="{{ get_request }}?page={{ items.previous_page_number }}">&lt;</a>
+            {% endif %}
+            {% for p in page_range %}
+                <a class="page-numbers {% if p == items.number %}active{% endif %}" href="{{ get_request }}?page={{ p }}">{{ p }}</a>
+            {% endfor %}
+            {% if items.has_next %}
+                <a class="page-numbers" href="{{ get_request }}?page={{ items.next_page_number }}">&gt;</a>
+            {% endif %}
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block content_right %}
     <div id='filter-box'>
         <h2>Фильтр отзывов</h2>
         <ul class="reviews-filter">
-            <li><a href='#'>Любые</a></li>
-            <li class="active"><a href='#'>Служение</a></li>
-            <li><a href='#'>Очищение души</a></li>
-            <li>Исцеление славянского духовного креста</li>
-            <li>Женские любовные игры</li>
-            <li>Кундалини Рейки</li>
-            <li>Обучение</li>
-            <li>Регрессии в прошлые жизни</li>
+            <li><a href='/reviews/'>Любые ({{ revews_count }})</a></li>
+            {% for c in categories %}
+                <li {% if c.slug in request_url %}class="active"{% endif %}><a href='/reviews/{{ c.slug }}/'>{{ c.name }} ({{ c.count }})</a></li>
+            {% endfor %}
         </ul>
     </div>
 {% endblock %}

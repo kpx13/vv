@@ -8,14 +8,14 @@ from django.contrib import messages
  
 
 from pages.models import Page
-from review.models import Review
+from review.models import Review, Category
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 import config
 from livesettings import config_value
 from django.conf import settings
 
-PAGINATION_COUNT = 5
+PAGINATION_COUNT = 10
 
 REDIRECT_URLS = {
                     'otzyivyi': 'reviews',
@@ -54,8 +54,33 @@ def services(request):
     c['title'] = u'Услуги'
     return render_to_response('services.html', c, context_instance=RequestContext(request))
 
-def reviews(request):
+def reviews(request, cat_name=None):
     c = get_common_context(request)
-    c['reviews_all'] = Review.objects.all()
-    c['title'] = u'Отзывы'
+    if cat_name:
+        category = Category.get_by_slug(cat_name)
+        items = Review.objects.filter(category=category)
+        c['title'] = u'Отзывы: ' + category.name
+    else:
+        items = Review.objects.all()
+        c['title'] = u'Отзывы'
+    c['categories'] = list(Category.objects.all())
+    c['categories'].sort(key=lambda x: -x.count)
+    c['revews_count'] = Review.objects.count()
+    
+    paginator = Paginator(items, PAGINATION_COUNT)
+    page = int(request.GET.get('page', '1'))
+    try:
+        items = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        items = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        items = paginator.page(page)
+    c['page'] = page
+    c['page_range'] = paginator.page_range
+    if len(c['page_range']) > 1:
+        c['need_pagination'] = True
+    c['items'] = items
+    
     return render_to_response('reviews.html', c, context_instance=RequestContext(request))
