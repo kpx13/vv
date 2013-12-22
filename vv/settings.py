@@ -110,6 +110,8 @@ INSTALLED_APPS = (
     
     'pages',
     'review',
+    'blog',
+    'articles',
 )
 
 
