@@ -14,9 +14,11 @@ from pages.models import Page
 from review.models import Review, Category
 from blog.models import BlogArticle
 from articles.models import Article
+from subscribe.forms import SubscribeForm
+from feedback.forms import FeedbackForm
 
 PAGINATION_COUNT = 10
-RIGHT_REVIEWS_COUNT = 5
+RIGHT_REVIEWS_COUNT = 3
 
 REDIRECT_URLS = {
                     'otzyivyi': 'reviews',
@@ -35,6 +37,16 @@ def get_common_context(request):
     c['is_debug'] = settings.DEBUG
     c['recent_reviews'] = Review.objects.filter(at_right=True).order_by('?')[:RIGHT_REVIEWS_COUNT]
     c.update(csrf(request))
+    
+    form = SubscribeForm()
+    if request.method == 'POST':
+        if request.POST['action'] == 'subscribe':
+            form = SubscribeForm(request.POST)
+            if form.is_valid():
+                form.save()
+                c['form_subscribe_send'] = True      
+    c['sform'] = form
+    
     return c
 
 def page(request, page_name):
@@ -69,6 +81,16 @@ def contacts(request):
     c = get_common_context(request)
     c['title'] = u'Контакты'
     c['content'] = Page.get_by_slug('contacts').content 
+    
+    form = FeedbackForm()
+    if request.method == 'POST':
+        if request.POST['action'] == 'feedback':
+            form = FeedbackForm(request.POST)
+            if form.is_valid():
+                form.save()
+                c['form_send'] = True        
+    c['form'] = form
+    
     return render_to_response('contacts.html', c, context_instance=RequestContext(request))
 
 def blog(request, page_name=None):

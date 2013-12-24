@@ -112,6 +112,8 @@ INSTALLED_APPS = (
     'review',
     'blog',
     'articles',
+    'feedback',
+    'subscribe',
 )
 
 

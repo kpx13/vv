@@ -34,5 +34,8 @@
                 <li {% if c.slug in request_url %}class="active"{% endif %}><a href='/reviews/{{ c.slug }}/'>{{ c.name }} ({{ c.count }})</a></li>
             {% endfor %}
         </ul>
+        
     </div>
+    <div  style='clear: both; height: 350px'></div>
+    
 {% endblock %}

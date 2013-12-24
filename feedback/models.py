@@ -3,12 +3,12 @@
 from django.db import models
 
 
-class Order(models.Model):
+class Feedback(models.Model):
     name  = models.CharField(u'Имя', max_length=255)
     phone  = models.CharField(u'Телефон', blank=True, max_length=255)
     email  = models.CharField(u'Email', blank=True, max_length=255)
     skype  = models.CharField(u'Skype', blank=True, max_length=255)
-    message  = models.CharField(u'Сообщение', blank=True)
+    message  = models.TextField(u'Сообщение')
     request_date = models.DateTimeField(u'дата добавления', auto_now_add=True)
     
     class Meta:

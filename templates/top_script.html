@@ -87,97 +87,12 @@ $(function(){
         $(this).find('input,textarea').focus();
     });
     
-    var $sendBtn = $('footer form button, .form button');
-    
-    
-    $sendBtn.on('click', function(){
-        
-        var form = $(this).parents('form');
-        
-        var faq = $(this).parents('.form').length;
-        //cl('faq'+faq);
-        
-        form.find('input, textarea').each(function(){
-        var t = $(this);
-        if ( t.hasClass('required') && t.val() == '') {
-            t.addClass('empty');
-        }
-        });
-        
-        if ( form.find('.empty').length ) {
-            return false;
-        } else {
-            var info = form.serializeArray();
-
-            $.post('/ajax/send', info, function(data){
-                
-                alert(data);
-                form.find('input,textarea').val('');
-                
-            });
-        }
-        
-        return false;
-    });
-    
     var ft = parseInt( $('#filter-box').css('top') );
-        
-    $(window).scroll(function(){
-        
-        var wh = $(window).height();
-        var st = $(window).scrollTop();
-        var bh = $('body').height();
-        var fh = $('#filter-box').height();
-        
-        //cl(wh);
-        
-        if ( st + wh > bh - 100 ){ //если конец
-            cl('!!!!!');
-            var top = $('#left').outerHeight() - fh;
-            $('#filter-box').css({'position': 'absolute', 'top': top });
-            
-        } else if ( st > 100 ){ // если середина
-            $('#filter-box').css({'position': 'fixed', 'top': '20px' });
-            
-        } else {
-            $('#filter-box').css({
-                'top': '20px',
-                'bottom': 'auto',
-                'position': 'absolute'
-            });
-        }
-    });    
-    
-    var loadOtzyv = function(){
-        var box = $('#otzyv-container');
-        
-        var res = '';
-        $('.otzyv').each(function(){
-            res += '-'+$(this).data('id')+',';
-        });
-        
-        var type = $('#filter li.active').data('type');
-        
-        $.post('/ajax/otzyv', {
-            offset: box.find('.otzyv').length,
-            resources: res,
-            type: type
-        }, function(data){            
-            if (data !== '')
-                box.append(data);
-            //else
-            //    $('#more').hide();
-        });
-    };
-    
 
     $('.unselectable').on('selectstart', function(){
         return false;
     });    
-    
-    $('#more').on('click', function(){        
-        loadOtzyv();        
-    });
+
     
     $('#content a img').each(function(){
     $(this)

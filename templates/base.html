@@ -42,9 +42,9 @@
                     {% include 'menu_item.html' with u='knigi' n='Книги' %}
                     {% include 'menu_item.html' with u='kosmicheskie-pokony' n='Космические поКОНы' %}
                     {% include 'menu_item.html' with u='znaki-silyi' n='Знаки силы' %}
+                    {% include 'menu_item.html' with u='orion' n='Орион' %}
                     {% include 'menu_item.html' with u='obo-mne' n='Обо мне' %}
                     {% include 'menu_item.html' with u='contacts' n='Контакты' %}
-                    {% include 'menu_item.html' with u='orion' n='Орион' %}
                 </ul>
                     
                 <div id="content">
@@ -58,6 +58,30 @@
                         {% block content_right %}
                             {% include 'right_reviews.html' %}
                         {% endblock %}
+                        <br /><br /><br />
+
+                        {% if form_subscribe_send %}
+                            <h3>Вы успешно подписались на рассылку.</h3>
+                        {% else %}
+                            <h2 id='subscribe'>Не забудь подписаться!</h2>
+                            
+                            <form class="form" method='POST'>
+                                <fieldset>
+                                    {% csrf_token %}
+                                    <label {% if sform.errors.name %}class='error-container'{% endif %}>
+                                        <span>Имя</span>
+                                        {{ sform.name }}
+                                    </label>
+                                    <label {% if sform.errors.email %}class='error-container'{% endif %}>
+                                        <span>E-mail</span>
+                                        {{ sform.email }}
+                                    </label>
+                                    <input type="hidden" name='action' value='subscribe' />
+                                    <button type='submit' style="background-image: url('/static/public/images/subscr_btn.png'); color: rgb(255, 255, 255); font-size: 15px; font-style: normal; font-weight: bold;
+                        background-color: transparent; border: 0px solid rgb(240, 240, 240); margin: 0px; padding: 0px 34px; height: 35px; width: 100%; background-position: 0% 50%; background-repeat: repeat repeat;">Подписаться</button>
+                                </fieldset> 
+                            </form>
+                        {% endif %}
                     </div>
                 </div>
                 

@@ -48,3 +48,5 @@
     color: #fff;
     cursor: default;
 }
+
+.error-container input, .error-container textarea {border: 1px solid red !important}

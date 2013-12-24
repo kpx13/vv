@@ -6,33 +6,37 @@
 
 {% block content_right %}
     <h2>Обратная связь</h2>
-    <form class="form">
+    <form class="form" method='POST'>
         <fieldset>
-            <input type="hidden" name="faq" value="1" />
-            <label>
-                <span>Имя</span>
-                <input name="name">
-            </label>
-            <label>
-                <span>Телефон</span>
-                <input name="phone">
-            </label>
-            <label>
-                <span>E-mail</span>
-                <input name="email">
-            </label>
-            <label>
-                <span>Skype</span>
-                <input name="skype">
-            </label>
-        </fieldset>
-        <fieldset>
-            <label>
-                <span>Сообщение</span>
-                <textarea name="message"></textarea>
-            </label>
-            <input name="fakeinput" type="hidden">
-            <button>Отправить</button>
+            {% if form_send %}
+                <h3>Ваше сообщение отправлено.</h3>
+            {% else %}
+                
+                {% csrf_token %}
+                <label {% if form.errors.name %}class='error-container'{% endif %}>
+                    <span>Имя</span>
+                    {{ form.name }}
+                </label>
+                <label {% if form.errors.phone %}class='error-container'{% endif %}>
+                    <span>Телефон</span>
+                    {{ form.phone }}
+                </label>
+                <label {% if form.errors.email %}class='error-container'{% endif %}>
+                    <span>E-mail</span>
+                    {{ form.email }}
+                </label>
+                <label {% if form.errors.skype %}class='error-container'{% endif %}>
+                    <span>Skype</span>
+                    {{ form.skype }}
+                </label>
+
+                <label {% if form.errors.message %}class='error-container'{% endif %}>
+                    <span>Сообщение</span>
+                    {{ form.message }}
+                </label>
+                <input type="hidden" name='action' value='feedback'>
+                <button type='submit'>Отправить</button>
+            {% endif %}
         </fieldset>
     </form>
 {% endblock %}
