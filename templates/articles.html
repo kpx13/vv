@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="blocks">
+        {% for b in items %}
+            <a href="/article/{{ b.slug }}" class="blog">
+                <h2>{{ b.name }}</h2>
+                <div class="blog-content abc">
+                    {{ b.desc|safe }}
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    
+    <br />
+    {% if need_pagination %}
+        <div class="pagination">
+            {% if items.has_previous %}
+                <a class="page-numbers" href="{{ get_request }}?page={{ items.previous_page_number }}">&lt;</a>
+            {% endif %}
+            {% for p in page_range %}
+                <a class="page-numbers {% if p == items.number %}active{% endif %}" href="{{ get_request }}?page={{ p }}">{{ p }}</a>
+            {% endfor %}
+            {% if items.has_next %}
+                <a class="page-numbers" href="{{ get_request }}?page={{ items.next_page_number }}">&gt;</a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

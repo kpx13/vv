@@ -13,6 +13,7 @@ from livesettings import config_value
 from pages.models import Page
 from review.models import Review, Category
 from blog.models import BlogArticle
+from articles.models import Article
 
 PAGINATION_COUNT = 10
 
@@ -71,6 +72,35 @@ def blog(request, page_name=None):
         return render_to_response('blog.html', c, context_instance=RequestContext(request))
     else:
         b = BlogArticle.get_by_slug(page_name)
+        c['title'] = b.name
+        c['p'] = b
+        return render_to_response('page.html', c, context_instance=RequestContext(request))
+
+def articles(request, page_name=None):
+    c = get_common_context(request)
+    if page_name is None:
+        c['title'] = u'Статьи'
+        items = Article.objects.all()
+        
+        paginator = Paginator(items, PAGINATION_COUNT)
+        page = int(request.GET.get('page', '1'))
+        try:
+            items = paginator.page(page)
+        except PageNotAnInteger:
+            page = 1
+            items = paginator.page(page)
+        except EmptyPage:
+            page = paginator.num_pages
+            items = paginator.page(page)
+        c['page'] = page
+        c['page_range'] = paginator.page_range
+        if len(c['page_range']) > 1:
+            c['need_pagination'] = True
+        c['items'] = items
+        
+        return render_to_response('articles.html', c, context_instance=RequestContext(request))
+    else:
+        b = Article.get_by_slug(page_name)
         c['title'] = b.name
         c['p'] = b
         return render_to_response('page.html', c, context_instance=RequestContext(request))
