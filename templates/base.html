@@ -23,7 +23,7 @@
         {% block body %}
             <div class="wrap">
                 <header>
-                    <a id="logo">
+                    <a id="logo" href='/'>
                         <img src="/static/public/images/krest-logo.png" id="logo-img" />
                         <div class="big">Вспомнить всё</div>
                         <div class="small">Проснуться</div>
@@ -32,8 +32,11 @@
                 </header>
                 
                 <ul id="menu">
-                    
-                    {% include 'menu_item.html' with u='home' n='Главная' %}
+                    {% if 'home' in request_url %}
+                        <li class="active"><span>Главная</span></li>
+                    {% else %}
+                        <li><a href="/" title="Главная">Главная</a></li>
+                    {% endif %}
                     {% include 'menu_item.html' with u='uslugi' n='Услуги' %}
                     {% include 'menu_item.html' with u='reviews' n='Отзывы' %}
                     {% include 'menu_item.html' with u='articles' n='Статьи' %}
