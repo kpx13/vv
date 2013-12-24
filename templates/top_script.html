@@ -42,9 +42,35 @@ $(function(){
         mouse_scrub: 0      
     });
 });
+
+    var inputs = 'footer input, footer textarea, .form textarea, .form input';
+
+    $(document)
+    .on('focus', inputs, function(){            
+        if ($(this).val() == ''){
+          $(this).siblings('span').fadeOut(150);
+        }
+    })
+    .on('blur', inputs, function(){
+        if ($(this).val() == '')
+            $(this).siblings('span').fadeIn(150);
+    });
+    
+    $(inputs)
+    .each(function(){
+        if ($(this).val().replace(' ','') !== ''){
+            $(this).siblings('span').hide();
+        }
+    });
+    
+    $(document).on('click','.label',function(){
+        $(this).find('input,textarea').focus();
+    });
 </script>
 
 <!-- SCM Music Player http://scmplayer.net -->
 <script type="text/javascript" src="http://scmplayer.hostjam.ru/script.js" 
 data-config="{'skin':'skins/black/skin.css','volume':71,'autoplay':false,'shuffle':true,'repeat':1,'placement':'top','showplaylist':false,'playlist':[ { 'title': 'Воин - Камелот', 'url': 'http://vv.webgenesis.ru/static/public/music/voin-kamelot.mp3' },{ 'title': 'Илия - Молитва Мироздания', 'url': 'http://vv.webgenesis.ru/static/public/music/Iliya - Molitva Mirozdaniya.mp3' },{ 'title': 'Город Солнца - Далеко', 'url': 'http://vv.webgenesis.ru/static/public/music/Gorod Solnca - Daleko.mp3' },{ 'title': 'Алихан Амхадов - Всё пройдет', 'url': 'http://vv.webgenesis.ru/static/public/music/Alihan-Amhadov-Vse-proydet.mp3' },{ 'title': 'Дольский', 'url': 'http://vv.webgenesis.ru/static/public/music/Aleksandr Dol\'skij - Vy ne pravy.mp3' },{ 'title': 'Елена Фролова', 'url': 'http://vv.webgenesis.ru/static/public/music/Elena Frolova - Ne uletaj vvys\'.mp3' } ]}" ></script>
 <!-- SCM Music Player script end -->
+
+
