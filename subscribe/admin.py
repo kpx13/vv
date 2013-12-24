@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from models import Subscribe
+from models import Order
 
-class SubscribeAdmin(admin.ModelAdmin):
-    list_display = ('email', 'request_date',)
 
-admin.site.register(Subscribe, SubscribeAdmin)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('request_date', 'name', 'phone', 'email', 'message')
+
+admin.site.register(Order, OrderAdmin)

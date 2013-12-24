@@ -2,12 +2,13 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 import pytils
+import datetime
 
 class BlogArticle(models.Model):
     name = models.CharField(max_length=128, verbose_name=u'название')
     desc = RichTextField(verbose_name=u'вступительная часть')
     content = RichTextField(verbose_name=u'содержимое')
-    date = models.DateField(auto_now_add=True, blank=True, verbose_name=u'дата')
+    date = models.DateField(blank=True, default=datetime.datetime.now(), verbose_name=u'дата')
     slug = models.SlugField(max_length=128, verbose_name=u'url', unique=True, blank=True, help_text=u'Заполнять не нужно')
     
     def save(self, *args, **kwargs):
@@ -25,6 +26,7 @@ class BlogArticle(models.Model):
     class Meta:
         verbose_name = u'запись в блоге'
         verbose_name_plural = u'записи в блоге'
+        ordering = ['-date']
     
     def __unicode__(self):
         return self.name
