@@ -2,6 +2,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 import pytils
+import datetime
 
 class Category(models.Model):
     name = models.CharField(max_length=128, verbose_name=u'название')
@@ -35,7 +36,7 @@ class Review(models.Model):
     category = models.ManyToManyField(Category, verbose_name=u'категории', related_name='articles')
     desc = RichTextField(verbose_name=u'вступительная часть')
     content = RichTextField(verbose_name=u'содержимое')
-    date = models.DateField(auto_now_add=True, blank=True, verbose_name=u'дата')
+    date = models.DateField(blank=True, default=datetime.datetime.now(), verbose_name=u'дата')
     slug = models.SlugField(max_length=128, verbose_name=u'url', unique=True, blank=True, help_text=u'Заполнять не нужно')
     at_right = models.BooleanField(u'показывать в правой части', blank=True, default=True)
     

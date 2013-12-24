@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.core.context_processors import csrf
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib import messages
@@ -110,7 +110,7 @@ def services(request):
     c['title'] = u'Услуги'
     return render_to_response('services.html', c, context_instance=RequestContext(request))
 
-def reviews(request, cat_name=None):
+def reviews(request, cat_name=None):    
     c = get_common_context(request)
     if cat_name:
         category = Category.get_by_slug(cat_name)
@@ -119,6 +119,7 @@ def reviews(request, cat_name=None):
     else:
         items = Review.objects.all()
         c['title'] = u'Отзывы'
+        c['reviews_all'] = True
     c['categories'] = list(Category.objects.all())
     c['categories'].sort(key=lambda x: -x.count)
     c['revews_count'] = Review.objects.count()

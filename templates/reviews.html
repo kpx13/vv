@@ -29,7 +29,7 @@
     <div id='filter-box'>
         <h2>Фильтр отзывов</h2>
         <ul class="reviews-filter">
-            <li><a href='/reviews/'>Любые ({{ revews_count }})</a></li>
+            <li {% if reviews_all %}class="active"{% endif %}><a href='/reviews/'>Любые ({{ revews_count }})</a></li>
             {% for c in categories %}
                 <li {% if c.slug in request_url %}class="active"{% endif %}><a href='/reviews/{{ c.slug }}/'>{{ c.name }} ({{ c.count }})</a></li>
             {% endfor %}
