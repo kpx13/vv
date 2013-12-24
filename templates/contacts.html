@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ content|safe }}
+{% endblock %}
+
+{% block content_right %}
+    <h2>Обратная связь</h2>
+    <form class="form">
+        <fieldset>
+            <input type="hidden" name="faq" value="1" />
+            <label>
+                <span>Имя</span>
+                <input name="name">
+            </label>
+            <label>
+                <span>Телефон</span>
+                <input name="phone">
+            </label>
+            <label>
+                <span>E-mail</span>
+                <input name="email">
+            </label>
+            <label>
+                <span>Skype</span>
+                <input name="skype">
+            </label>
+        </fieldset>
+        <fieldset>
+            <label>
+                <span>Сообщение</span>
+                <textarea name="message"></textarea>
+            </label>
+            <input name="fakeinput" type="hidden">
+            <button>Отправить</button>
+        </fieldset>
+    </form>
+{% endblock %}

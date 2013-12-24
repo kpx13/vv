@@ -6,6 +6,7 @@ import datetime
 
 class Category(models.Model):
     name = models.CharField(max_length=128, verbose_name=u'название')
+    name_dat = models.CharField(max_length=128, blank=True, verbose_name=u'название в дательном падеже')
     slug = models.SlugField(max_length=128, verbose_name=u'url', unique=True, blank=True, help_text=u'Заполнять не нужно')
     
     def save(self, *args, **kwargs):
@@ -55,6 +56,7 @@ class Review(models.Model):
     class Meta:
         verbose_name = u'отзыв'
         verbose_name_plural = u'отзывы'
+        ordering = ['-date',]
     
     def __unicode__(self):
         return self.name

@@ -16,16 +16,24 @@ from blog.models import BlogArticle
 from articles.models import Article
 
 PAGINATION_COUNT = 10
+RIGHT_REVIEWS_COUNT = 5
 
 REDIRECT_URLS = {
                     'otzyivyi': 'reviews',
-                 } 
+                 }
+
+SERVICES_AND_REVIEWS = {'obuchenie': 6, 
+                        'regressii-v-proshlyie-zhizni': 7, 
+                        'sluzhenie': 1, 
+                        'isczelenie-slavyanskogo-duxovnogo-kresta': 3, 
+                        'ochishhenie-dushi': 2, 
+                        'kundalini-rejki': 5} 
 
 def get_common_context(request):
     c = {}
     c['request_url'] = request.path
     c['is_debug'] = settings.DEBUG
-    c['recent_reviews'] = Review.objects.filter(at_right=True)[:5]
+    c['recent_reviews'] = Review.objects.filter(at_right=True).order_by('?')[:RIGHT_REVIEWS_COUNT]
     c.update(csrf(request))
     return c
 
@@ -35,6 +43,11 @@ def page(request, page_name):
     if p:
         c.update({'p': p})
         c['title'] = p.title
+        if page_name in SERVICES_AND_REVIEWS:
+            cat = Category.objects.get(id=SERVICES_AND_REVIEWS[page_name])
+            c['recent_reviews'] = Review.objects.filter(category=cat, at_right=True).order_by('?')[:RIGHT_REVIEWS_COUNT]
+            c['reviews_category'] = cat
+        
         return render_to_response('page.html', c, context_instance=RequestContext(request))
     else:
         if page_name in REDIRECT_URLS:
@@ -46,6 +59,17 @@ def home(request):
     c['request_url'] = 'home'
     c['title'] = u'Главная'
     return render_to_response('home.html', c, context_instance=RequestContext(request))
+
+def molitva(request):
+    c = get_common_context(request)
+    c['title'] = u'Общая молитва'
+    return render_to_response('molitva.html', c, context_instance=RequestContext(request))
+
+def contacts(request):
+    c = get_common_context(request)
+    c['title'] = u'Контакты'
+    c['content'] = Page.get_by_slug('contacts').content 
+    return render_to_response('contacts.html', c, context_instance=RequestContext(request))
 
 def blog(request, page_name=None):
     c = get_common_context(request)

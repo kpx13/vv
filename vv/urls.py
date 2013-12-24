@@ -21,6 +21,8 @@ urlpatterns = patterns('',
 
     url(r'^$', views.home),
     url(r'^home/$', views.home),
+    url(r'^molitva/$', views.molitva),
+    url(r'^contacts/$', views.contacts),
     url(r'^blog/(?P<page_name>[\w-]+)/$', views.blog),
     url(r'^blog/$', views.blog),
     url(r'^article/(?P<page_name>[\w-]+)/$', views.articles),

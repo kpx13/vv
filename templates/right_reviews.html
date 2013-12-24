@@ -1,10 +1,23 @@
-<h2>Отзывы </h2>
-    {% for r in recent_reviews %}
-        <a href="/review/{{ r.slug }}/" class="otzyv">
-            <h3>{{ r.name }}</h3>    
-            {{ r.desc|safe }}
-        </a>
-    {% endfor %}
+{% if reviews_category %}
+    <h2>Отзывы {{ reviews_category.name_dat }}</h2>
+{% else %}
+    <h2>Отзывы </h2>
+{% endif %}
+
+
+{% for r in recent_reviews %}
+    <a href="/review/{{ r.slug }}/" class="otzyv">
+        <h3>{{ r.name }}</h3>    
+        {{ r.desc|safe }}
+    </a>
+{% endfor %}
+{% if reviews_category %}
+    <a href='/reviews/{{ reviews_category.slug }}'>Все отзывы {{ reviews_category.name_dat }}&nbsp;&rarr;</a>
+{% else %}
+    <a href='/reviews/'>Все отзывы&nbsp;&rarr;</a>
+{% endif %}
+
+{% comment %}
 <h2>Не забудь подписаться!</h2>
 <!-- SmartResponder.ru subscribe form code (begin) -->
 <link rel="stylesheet" href="https://imgs.smartresponder.ru/e1bbeb24091b44f1f4048bbc87edacd11278fd23/">
@@ -41,3 +54,4 @@ background-color: transparent; border: 0px solid rgb(240, 240, 240); margin: 0px
     <input type="hidden" name="tid" value="0"><input type="hidden" name="lang" value="ru"><input type="hidden" name="did[]" value="400712"><input name="script_url_2_49" type="hidden" value="https://imgs.smartresponder.ru/on/0c4d3683566546252a6b5bdf26191bc2910c0cbb/2_49"></form>
 </div>
 <!-- SmartResponder.ru subscribe form code (end) -->
+{% endcomment %}

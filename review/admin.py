@@ -3,7 +3,7 @@ from django.contrib import admin
 import models
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug',)
+    list_display = ('name', 'name_dat', 'slug', 'id')
     search_fields = ('name',)
 
 class ReviewAdmin(admin.ModelAdmin):
