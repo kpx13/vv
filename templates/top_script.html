@@ -1,27 +1,6 @@
 <script type="text/javascript">
-var cl = function(text){
-return false;
-}
-function array_unique( array ) {
-    var p, i, j;
-    for(i = array.length; i;){
-        for(p = --i; p > 0;){
-            if(array[i] === array[--p]){
-                for(j = p; --p && array[i] === array[p];);
-                i -= array.splice(p + 1, j - p).length;
-            }
-        }
-    }
-    return true;
-}
 
 $(function(){
-    $('#menu .contactlink a').bind('click',function(event){
-        event.preventDefault();    
-        $('html, body').stop().animate({
-            scrollTop: ( $('html').height() - $(window).height() )
-            }, 1000/*, 'easeInOutQuart'*/);
-    });
     
     $.supersized({  
         // Functionality
@@ -54,57 +33,14 @@ $(function(){
         thumbnail_navigation: 0,            // Thumbnail navigation
         slides: [           // Slideshow Images
             {image : '/static/assets/gallery/1/1.jpg' },
-{image : '/static/assets/gallery/1/2.jpg' },
-{image : '/static/assets/gallery/1/6.jpg' },
-{image : '/static/assets/gallery/1/4.jpg' },
+            {image : '/static/assets/gallery/1/2.jpg' },
+            {image : '/static/assets/gallery/1/6.jpg' },
+            {image : '/static/assets/gallery/1/4.jpg' },
         ],
         // Theme Options               
         progress_bar: 0,            // Timer for each slide                         
         mouse_scrub: 0      
     });
-    
-    var inputs = 'footer input, footer textarea, .form textarea, .form input';
-
-    $(document)
-    .on('focus', inputs, function(){            
-        if ($(this).val() == ''){
-        $(this).siblings('span').fadeOut(150);
-        }
-    })
-    .on('blur', inputs, function(){
-        if ($(this).val() == '')
-            $(this).siblings('span').fadeIn(150);
-    });
-    
-    $(inputs)
-    .each(function(){
-        if ($(this).val().replace(' ','') !== ''){
-            $(this).siblings('span').hide();
-        }
-    });
-    
-    $(document).on('click','.label',function(){
-        $(this).find('input,textarea').focus();
-    });
-    
-    var ft = parseInt( $('#filter-box').css('top') );
-
-    $('.unselectable').on('selectstart', function(){
-        return false;
-    });    
-
-    
-    $('#content a img').each(function(){
-    $(this)
-    .parent('a')
-    .addClass('fancy')
-    .attr('rel','fancybox');
-    });
-    
-    $('.fancy').fancybox();
-    
-    cl( $.fn.fancybox )
-    
 });
 </script>
 <!-- SCM Music Player http://scmplayer.net -->
