@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Вспомнить всё - 404</title>
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/static/public/style/main.css" />
+        <link rel="stylesheet" href="/static/public/plugins/supersized/supersized.css" />
+        <script type="text/javascript" src="/static/public/js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="/static/public/plugins/supersized/supersized.3.2.7.min.js"></script>
+        <link rel="stylesheet" href="/static/public/style/custom.css" type="text/css" />
+        {% include 'top_script.html' %}
+        
+        {% block head %}
+        {% endblock %}
+    </head>
+    
+    <body>
+        {% block body %}
+            <div class="wrap">
+                <header>
+                    <a id="logo">
+                        <img src="/static/public/images/krest-logo.png" id="logo-img" />
+                        <div class="big">Вспомнить всё</div>
+                        <div class="small">Проснуться</div>
+                    </a>
+                    <div id="slogan">Добро пожаловать в мой мир...</div>
+                </header>
+                
+                <ul id="menu">
+                    
+                    {% include 'menu_item.html' with u='home' n='Главная' %}
+                    {% include 'menu_item.html' with u='uslugi' n='Услуги' %}
+                    {% include 'menu_item.html' with u='reviews' n='Отзывы' %}
+                    {% include 'menu_item.html' with u='articles' n='Статьи' %}
+                    {% include 'menu_item.html' with u='blog' n='Блог' %}
+                    {% include 'menu_item.html' with u='molitva' n='Общая Молитва' %}
+                    {% include 'menu_item.html' with u='knigi' n='Книги' %}
+                    {% include 'menu_item.html' with u='kosmicheskie-pokony' n='Космические поКОНы' %}
+                    {% include 'menu_item.html' with u='znaki-silyi' n='Знаки силы' %}
+                    {% include 'menu_item.html' with u='orion' n='Орион' %}
+                    {% include 'menu_item.html' with u='obo-mne' n='Обо мне' %}
+                    {% include 'menu_item.html' with u='contacts' n='Контакты' %}
+                </ul>
+                    
+                <div id="content">
+                    <div id="left">
+                        <h1>500.</h1>
+                        <p>Внутренняя ошибка сервера. Пожалуйста, сообщите администратору о том, как она возникла по почте annkpx@gmail.com</p>
+                    </div>
+                    
+                    <div id="right">
+                    </div>
+                </div>
+                
+                {% include 'footer.html' %}
+            </div>
+        {% endblock %}
+    </body>
+</html>
