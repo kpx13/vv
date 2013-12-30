@@ -26,7 +26,7 @@ REDIRECT_URLS = {
 
 SERVICES_AND_REVIEWS = {'obuchenie': 6, 
                         'regressii-v-proshlyie-zhizni': 7, 
-                        'sluzhenie': 1, 
+                        #'sluzhenie': 1, 
                         'isczelenie-slavyanskogo-duxovnogo-kresta': 3, 
                         'ochishhenie-dushi': 2, 
                         'kundalini-rejki': 5} 
