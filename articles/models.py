@@ -25,6 +25,8 @@ class Article(models.Model):
     class Meta:
         verbose_name = u'статья'
         verbose_name_plural = u'статьи'
+        ordering = ['-date']
+        
     
     def __unicode__(self):
         return self.name
