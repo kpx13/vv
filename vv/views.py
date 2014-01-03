@@ -28,8 +28,7 @@ SERVICES_AND_REVIEWS = {'obuchenie': 6,
                         'regressii-v-proshlyie-zhizni': 7, 
                         #'sluzhenie': 1, 
                         'isczelenie-slavyanskogo-duxovnogo-kresta': 3, 
-                        'ochishhenie-dushi': 2, 
-                        'kundalini-rejki': 5} 
+                        'ochishhenie-dushi': 2 } 
 
 def get_common_context(request):
     c = {}
