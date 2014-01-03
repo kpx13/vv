@@ -6,3 +6,4 @@ django-keyedcache
 django-admin-tools
 pytils
 django-livesettings
+django-registration==0.8

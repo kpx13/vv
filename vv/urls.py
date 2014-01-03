@@ -19,6 +19,8 @@ urlpatterns = patterns('',
     url(r'^settings/', include('livesettings.urls')),
     url(r'^ckeditor/', include('ckeditor.urls')),
 
+    url(r'^edu/', include('edu.urls')),
+
     url(r'^$', views.home),
     url(r'^home/$', views.home),
     url(r'^molitva/$', views.molitva),

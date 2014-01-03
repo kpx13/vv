@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <title>Вспомнить Всё. Обучение. {% block title %}{{ title }}{% endblock %}</title>
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name='yandex-verification' content='7b61cf8c9a3eb810' />
+        
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/static/public/style/main.css" />
+        <link rel="stylesheet" href="/static/public/plugins/supersized/supersized.css" />
+        <script type="text/javascript" src="/static/public/js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="/static/public/plugins/supersized/supersized.3.2.7.min.js"></script>
+<!--         <script type="text/javascript" src="/static/public/plugins/fancybox/jquery.fancybox.pack.js"></script> -->
+<!--         <link rel="stylesheet" href="/static/public/plugins/fancybox/jquery.fancybox.css" /> -->
+        <link rel="stylesheet" href="/static/public/style/custom.css" type="text/css" />
+        {% include 'top_script.html' %}
+        
+        {% block head %}
+        {% endblock %}
+    </head>
+    
+    <body>
+        {% block body %}
+            <div class="wrap">
+                <header>
+                    <a id="logo" href='/edu/'>
+                        <img src="/static/public/images/krest-logo.png" id="logo-img" />
+                        <div class="big">Вспомнить всё</div>
+                        <div class="small">Обучение</div>
+                    </a>
+                    {% if user.is_authenticated %}
+                        <div id="slogan">{{ user.first_name }}</div>
+                    {% else %}
+                        <div id="slogan"><a href='/edu/register/'>Вход / Регистрация</a></div>
+                    {% endif %}
+                    
+                </header>
+                
+                <ul id="menu">
+                    {% if not user.is_authenticated %}
+                        {% include 'menu_item.html' with u='edu/register' n='Регистрация' %}
+                    {% endif %}
+                
+                    {% include 'menu_item.html' with u='edu/first' n='Первый круг' %}
+                    {% include 'menu_item.html' with u='edu/second' n='Второй круг' %}
+                    {% include 'menu_item.html' with u='edu/third' n='Третий круг' %}
+                    
+                    {% if user.is_authenticated %}
+                        {% include 'menu_item.html' with u='edu/cabinet' n='Личный кабинет' %}
+                        {% include 'menu_item.html' with u='edu/logout' n='Выход' %}
+                    {% else %}
+                        {% include 'menu_item.html' with u='home' n='Назад на сайт' %}
+                    {% endif %}
+                </ul>
+                    
+                <div id="content">
+                    <div id="left">
+                        <h2>{{ title }}</h2>
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                    
+                    <div id="right">
+                        {% block content_right %}
+                        {% endblock %}
+                        <br />
+                    </div>
+                </div>
+                
+                {% include 'footer.html' %}
+            </div>
+        {% endblock %}
+        
+        {% if not is_debug %}
+            <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function (d, w, c) {
+    (w[c] = w[c] || []).push(function() {
+        try {
+            w.yaCounter23526010 = new Ya.Metrika({id:23526010,
+                    webvisor:true,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true});
+        } catch(e) { }
+    });
+
+    var n = d.getElementsByTagName("script")[0],
+        s = d.createElement("script"),
+        f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+    if (w.opera == "[object Opera]") {
+        d.addEventListener("DOMContentLoaded", f, false);
+    } else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="//mc.yandex.ru/watch/23526010" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+        {% endif %}
+    </body>
+</html>

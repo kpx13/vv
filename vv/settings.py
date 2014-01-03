@@ -114,6 +114,8 @@ INSTALLED_APPS = (
     'articles',
     'feedback',
     'subscribe',
+    'edu',
+    'users',
 )
 
 
@@ -161,13 +163,12 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT, 'uploads')
 CKEDITOR_MEDIA_PREFIX = '/media/ckeditor/'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'noreply@webgenesis.ru'
-EMAIL_HOST_PASSWORD = 'noreply13'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST_USER = 'noreply@vspomnit-vse.com'
+EMAIL_HOST_PASSWORD = 'noreplyvspomnit'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-EMAIL_SEND_TO = 'anna@webgenesis.ru'
 
 try:
     from dev import *

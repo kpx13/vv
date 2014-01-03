@@ -1,0 +1,30 @@
+{% extends "base_edu.html" %}
+
+{% block content %}
+    <p>ФИО: <b>{{ request.user.first_name }}</b></p>
+    <p>E-mail: <b>{{ request.user.email }}</b></p>
+    <img src='/media/{{ request.user.get_profile.photo }}' style='max-width: 300px' />
+    <form class="form form-register" method='POST' enctype="multipart/form-data">
+        <fieldset>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type='hidden' name='action' value='data' />
+            <button type='submit'>Изменить</button>
+        </fieldset>
+    </form>
+
+{% endblock %}
+
+{% block content_right %}
+    <br />
+    <h2>Изменение пароля</h2>
+    
+    <form class="form form-register" method='POST' enctype="multipart/form-data">
+        <fieldset>
+            {% csrf_token %}
+            {{ passform.as_p }}
+            <input type='hidden' name='action' value='password' />
+            <button type='submit'>Изменить</button>
+        </fieldset>
+    </form>
+{% endblock %}

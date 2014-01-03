@@ -1,0 +1,32 @@
+{% extends 'base_edu.html' %}
+
+{% block content %}            
+    {{ section.content|safe }}
+{% endblock %}
+
+{% block content_right %}
+    <div id='filter-box'>
+        <h2>Разделы</h2>
+        <ul class="reviews-filter">
+            {% for s in category.section.all %}
+                <li {% if s.slug in request_url %}class="active"{% endif %}><a href='/edu/{{ category.slug }}/{{ s.slug }}/'>{{ s.name }}</a></li>
+            {% endfor %}
+        </ul>
+<!--
+        <br /><br />
+        <div style='clear: both'></div>
+        <br /><br />
+        <h2>Завершение обучения</h2>
+        
+        <ul class="reviews-filter">
+            <li {% if reviews_all %}class="active"{% endif %}><a href='#'>Оставить отзыв</a></li>
+            <li {% if reviews_all %}class="active"{% endif %}><a href='#'>Отправить заявку на второй круг</a></li>
+        </ul>
+        -->
+        <br /><br />
+        <div style='clear: both'></div>
+        <br /><br />
+        <div  style='clear: both; height: 350px'></div>
+    </div>
+    <div  style='clear: both; height: 350px'></div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base_edu.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <form class="form form-register" method='POST' enctype="multipart/form-data">
+        <fieldset>
+            {% csrf_token %}
+            {{ register_form.as_p }}
+            <input type="hidden" name='action' value='register'>
+            <button type='submit'>Зарегистрироваться</button>
+        </fieldset>
+    </form>
+
+{% endblock %}
+
+{% block content_right %}
+    <br />
+    <h2>Вход</h2>
+    
+    <form class="form form-register" method='POST' enctype="multipart/form-data">
+        <fieldset>
+            {% csrf_token %}
+            {{ auth_form.as_p }}
+            <input type="hidden" name='action' value='auth'>
+            <button type='submit'>Войти</button>
+        </fieldset>
+    </form>
+{% endblock %}

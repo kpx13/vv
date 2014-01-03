@@ -50,3 +50,30 @@
 }
 
 .error-container input, .error-container textarea {border: 1px solid red !important}
+
+.form-register input, .form-register textarea
+{
+    border-color: #ddd;
+    width: 400px;
+    line-height: 20px;
+    height: 20px;
+    background: #fff !important;
+}
+
+.form-register textarea{
+    height: 100px;
+}
+
+
+ul.errorlist {
+    padding: 0px;
+    margin: 0px;
+    margin-left: 0px !important;
+}
+
+ul.errorlist li {
+    list-style: none;
+    color: red;
+    padding: 0px;
+    margin: 0px;
+}
