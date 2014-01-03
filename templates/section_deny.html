@@ -6,22 +6,26 @@
 
 {% block content_right %}
     <div id='filter-box'>
-        {% if can_request %}
-            {% if not status %}
-                <h2>Подать заявку</h2>
-                <form class="form form-register" method='POST' enctype="multipart/form-data">
-                    <fieldset>
-                        {% csrf_token %}
-                        {{ request_form.as_p }}
-                        <input type='hidden' name='action' value='request' />
-                        <button type='submit'>Отправить</button>
-                    </fieldset>
-                </form>
+        {% if user.is_authenticated %}
+            {% if can_request %}
+                {% if not status %}
+                    <h2>Подать заявку</h2>
+                    <form class="form form-register" method='POST' enctype="multipart/form-data">
+                        <fieldset>
+                            {% csrf_token %}
+                            {{ request_form.as_p }}
+                            <input type='hidden' name='action' value='request' />
+                            <button type='submit'>Отправить</button>
+                        </fieldset>
+                    </form>
+                {% else %}
+                    <p>{{ status }}</p>
+                {% endif %}
             {% else %}
-                <p>{{ status }}</p>
+                <p>Для того, чтобы подать заявку на данный курс, необходимо сначала пройти предыдущий.</p>
             {% endif %}
         {% else %}
-            <p>Для того, чтобы подать заявку на данный курс, необходимо сначала пройти предыдущий.</p>
+            <p>Для того, чтобы подать заявку, необходимо сначала <a href='/edu/register/'>зарегистрироваться</a>.</p>
         {% endif %}
         <br /><br />
         <div  style='clear: both; height: 350px'></div>
