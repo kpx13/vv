@@ -77,3 +77,18 @@ ul.errorlist li {
     padding: 0px;
     margin: 0px;
 }
+
+ul.edu-video-container
+{
+    width: 600px;
+    margin: 0px !important;
+    padding: 0px !important;
+    clear: both;
+}
+
+ul.edu-video-container li
+{
+    list-style: none;
+    display: inline;
+}
+

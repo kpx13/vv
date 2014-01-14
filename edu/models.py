@@ -59,4 +59,4 @@ class Section(models.Model):
         ordering = ['order']
     
     def __unicode__(self):
-        return self.name
+        return u'%s - %s' % (self.category.name, self.name)
