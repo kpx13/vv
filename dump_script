@@ -1,1 +1,1 @@
-python manage.py dumpdata articles blog edu feedback pages review subscribe users > dump_all____.json
+python manage.py dumpdata articles blog edu feedback pages review subscribe auth users --natural > dump_all_14jan.json
