@@ -92,3 +92,21 @@ ul.edu-video-container li
     display: inline;
 }
 
+.large-button
+{
+    background: #6236f2;
+    width: 60%;
+    font-size: 1.3em;
+    margin: 0px auto;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.large-button a
+{
+    margin: 0px;
+    padding: 0px;
+    color: white !important;
+    text-decoration: none !important;
+}
