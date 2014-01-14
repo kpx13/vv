@@ -1,0 +1,1 @@
+python manage.py dumpdata articles blog edu feedback pages review subscribe users > dump_all____.json
