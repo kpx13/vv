@@ -8,6 +8,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class SectionAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'name', 'slug', 'order')
+    list_filter = ('category', )
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Section, SectionAdmin)
