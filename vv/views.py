@@ -42,8 +42,10 @@ def get_common_context(request):
         if request.POST['action'] == 'subscribe':
             form = SubscribeForm(request.POST)
             if form.is_valid():
-                form.save()
-                c['form_subscribe_send'] = True      
+                if form.save():
+                    c['form_subscribe_send'] = '1'
+                else:
+                    c['form_subscribe_send'] = '0'      
     c['sform'] = form
     
     return c

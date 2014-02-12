@@ -15,4 +15,8 @@ class Subscribe(models.Model):
     
     def __unicode__(self):
         return str(self.name)
+    
+    @staticmethod
+    def exist(email):
+        return len(Subscribe.objects.filter(email=email)) > 0
 

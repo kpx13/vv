@@ -19,12 +19,14 @@ class SubscribeForm(ModelForm):
         exclude = ('date', )
       
     def save(self, *args, **kwargs):
+        if Subscribe.exist(self.data['email']):
+            return False
         super(SubscribeForm, self).save(*args, **kwargs)
         subject=u'Пупс, подписался какой-то чел.'
         
         body_templ="""
 {% for field in form %}
-   {{ field.label }} - {{ field.value }}
+{{ field.label }} - {{ field.value }}
 {% endfor %}
             """
         ctx = Context({
@@ -33,3 +35,4 @@ class SubscribeForm(ModelForm):
         })
         body = Template(body_templ).render(ctx)
         sendmail(subject, body)
+        return True
