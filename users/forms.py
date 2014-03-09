@@ -4,8 +4,9 @@ from django.forms import ModelForm, fields
 from models import UserProfile, Request
  
 class ProfileForm(ModelForm):
-    fio = fields.CharField(required=True, label=u'ФИО *')
+    fio = fields.CharField(required=True, label=u'ФИО *', help_text=u'(Полностью!)')
     email = fields.EmailField(label=u'E-mail *')
+    photo = fields.FileField(required=True, label=u'Фото *', help_text=u'(Файл не более 1Мб)')
     
     class Meta:
         model = UserProfile
