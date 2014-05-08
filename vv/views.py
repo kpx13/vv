@@ -201,7 +201,7 @@ def review(request, name):
     
 def yandex(request):
     if request.method == 'POST':
-        from yandex import Transaction
+        from yandex.models import Transaction
         Transaction(message=str(request.POST.dict())).save()
     else:
         raise Http404()
