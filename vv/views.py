@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import config
 from livesettings import config_value
@@ -199,6 +200,7 @@ def review(request, name):
     else:
         raise Http404()
     
+@csrf_exempt
 def yandex(request):
     if request.method == 'POST':
         from yandex.models import Transaction
