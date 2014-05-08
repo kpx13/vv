@@ -205,6 +205,13 @@ def yandex(request):
     if request.method == 'POST':
         from yandex.models import Transaction
         Transaction(message=str(request.POST.dict())).save()
+        return HttpResponse(status=200)
     else:
-        raise Http404()
-    return HttpResponse(status=200)
+        #raise Http404()
+        import urllib2
+        import urllib
+        post_data = [('operation_id','905738277376062017'),]   
+        result = urllib2.urlopen('http://money.yandex.ru/api/operation-details', urllib.urlencode(post_data))
+        content = result.read()
+        return HttpResponse(content)
+    
