@@ -198,3 +198,11 @@ def review(request, name):
         return render_to_response('page.html', c, context_instance=RequestContext(request))
     else:
         raise Http404()
+    
+def yandex(request):
+    if request.method == 'POST':
+        from yandex import Transaction
+        Transaction(message=str(request.POST.dict())).save()
+    else:
+        raise Http404()
+    return HttpResponse(status=200)

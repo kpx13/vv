@@ -37,6 +37,8 @@ urlpatterns = patterns('',
     url(r'^otzyivyi/(?P<name>[\w-]+)/$', views.review),
     url(r'^otzyivyi/$', views.reviews),
     
+    url(r'^yandex/$', views.yandex),
+    
     url(r'^services/$', views.services),
     url(r'^uslugi/$', views.services),
     url(r'^uslugi/(?P<page_name>[\w-]+)/$', views.page),

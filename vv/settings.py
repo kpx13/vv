@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'subscribe',
     'edu',
     'users',
+    'yandex',
 )
 
 
