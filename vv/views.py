@@ -219,7 +219,13 @@ def yandex(request):
     if request.method == 'POST':
         from yandex.models import Transaction
         Transaction(message=str(request.POST.dict()),
-                    email='asdf').save()
+                    email=request.POST.get('label', u'!!! не заполнено')).save()
+	if request.POST.get('withdraw_amount', '0') == u'500.00':
+	    from django.core.mail import send_mail
+	    send_mail(u'Доступ на целительский сеанс', u"А вот и ссылка: %s" % settings.CONFERENCE_LINK, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
+	else:
+	    from django.core.mail import send_mail
+            send_mail(u'Доступ на целительский сеанс', u"Введённая Вами сумма не 500 руб. Если у Вас возникли проблемы пишите на mail.vspomnit.vse@gmail.com", settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
         return HttpResponse(status=200)
     else:
         return HttpResponseRedirect('/conference/')

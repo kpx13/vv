@@ -18,3 +18,11 @@ config_register(StringValue(
         help_text = u"Почта, куда будут приходить заявки.",
         default = 'annkpx@gmail.com'
     ))
+
+config_register(StringValue(
+                            MYAPP_GROUP,
+        'CONFERENCE_LINK',
+        description = u'Ссылка на следующую конференцию',
+        help_text = u"Ссылка, которая будет приходить людям при оплате конференции.",
+        default = u'youtube.ru'
+    ))

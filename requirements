@@ -5,5 +5,5 @@ sorl-thumbnail
 django-keyedcache
 django-admin-tools
 pytils
-django-livesettings
 django-registration==0.8
+django-livesettings==1.4-12
