@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {{ p.content|safe }}
+    
+    <p>Для того, чтобы попасть на конференцию, введите свой емейл, после этого Вам необходимо будет оплатить 500р. и ссылка придёт на указанный Вами адрес.</p>
+    <form class="form" method='POST'>
+        <fieldset>
+            {% csrf_token %}
+            <label {% if sform.errors.email %}class='error-container'{% endif %}>
+                <span>E-mail</span>
+                <input type='text' name='email' value=''>
+            </label>
+            <input type="hidden" name='action' value='conference' />
+            <button type='submit'>Отправить запрос</button>
+        </fieldset> 
+    </form>
+{% endblock %}
+
+
+                            

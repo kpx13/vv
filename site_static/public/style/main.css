@@ -340,6 +340,7 @@ p.justifyright{
 .picture-block img{
 	margin-right: 9px !important;
     border-radius: 10px;
+    width: 286px;
 }
 .picture-block:nth-child(2n) img{
 	margin-right: 0 !important;

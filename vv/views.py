@@ -199,23 +199,27 @@ def review(request, name):
         return render_to_response('page.html', c, context_instance=RequestContext(request))
     else:
         raise Http404()
-    
+
+
+def conference(request):
+    if request.method == 'POST':
+        if request.POST['action'] == 'conference':
+            c = get_common_context(request)
+            c['title'] = u'Оплата доступа на конференцию'
+            c['email'] = request.POST.get('email', '')
+            return render_to_response('yandex.html', c, context_instance=RequestContext(request))
+    else:
+        c = get_common_context(request)
+        c['title'] = u'Целительские сеансы онлайн'
+        return render_to_response('conference.html', c, context_instance=RequestContext(request))
+
+
 @csrf_exempt
 def yandex(request):
     if request.method == 'POST':
         from yandex.models import Transaction
-        Transaction(message=str(request.POST.dict())).save()
+        Transaction(message=str(request.POST.dict()),
+                    email='asdf').save()
         return HttpResponse(status=200)
     else:
-        c = get_common_context(request)
-        c['title'] = u'Оплата доступа на конференцию'
-        return render_to_response('yandex.html', c, context_instance=RequestContext(request))
-        #raise Http404()
-        """
-        import urllib2
-        import urllib
-        post_data = [('operation_id','905738277376062017'),]   
-        result = urllib2.urlopen('http://money.yandex.ru/api/operation-details', urllib.urlencode(post_data))
-        content = result.read()
-        return HttpResponse(content)
-        """
+        return HttpResponseRedirect('/conference/')

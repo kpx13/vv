@@ -4,6 +4,6 @@ from models import Transaction
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('request_date', 'message')
+    list_display = ('email', 'request_date')
 
 admin.site.register(Transaction, OrderAdmin)
