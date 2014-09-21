@@ -9,6 +9,7 @@ class CategoryAdmin(admin.ModelAdmin):
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'date', 'desc', 'at_right')
     search_fields = ('name', 'desc', 'content')
+    list_filter = ('category',)
 
 admin.site.register(models.Category, CategoryAdmin)
 admin.site.register(models.Review, ReviewAdmin)

@@ -25,7 +25,7 @@ class UserProfile(models.Model):
     vk = models.CharField(max_length=256, blank=True, verbose_name=u'vk')
     photo = models.ImageField(upload_to=lambda instance, filename: 'uploads/edu/' + pytils.translit.translify(filename),
                               max_length=256, blank=True, verbose_name=u'фото')
-    about = models.TextField(blank=True, verbose_name=u'о себе')
+    about = models.TextField(blank=True, verbose_name=u'Напишите про себя и почему вас должны принять на обучение')
     requests = models.ManyToManyField(Category, through='Request')
     
     def have_access(self):

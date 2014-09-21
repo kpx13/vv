@@ -28,8 +28,8 @@ REDIRECT_URLS = {
 SERVICES_AND_REVIEWS = {'obuchenie': 6, 
                         'regressii-v-proshlyie-zhizni': 7, 
                         #'sluzhenie': 1, 
-                        'isczelenie-slavyanskogo-duxovnogo-kresta': 3, 
-                        'ochishhenie-dushi': 2 } 
+                        'isczelenie-slavyanskogo-duxovnogo-kresta': 12, 
+                        'ochishhenie-dushi': 12 } 
 
 def get_common_context(request):
     c = {}
@@ -211,6 +211,8 @@ def conference(request):
     else:
         c = get_common_context(request)
         c['title'] = u'Целительские сеансы онлайн'
+	c['CONFERENCE_DATE'] = config_value('MyApp', 'CONFERENCE_DATE')
+	c['p'] = Page.get_by_slug('conference')
         return render_to_response('conference.html', c, context_instance=RequestContext(request))
 
 
@@ -222,7 +224,7 @@ def yandex(request):
                     email=request.POST.get('label', u'!!! не заполнено')).save()
 	if request.POST.get('withdraw_amount', '0') == u'500.00':
 	    from django.core.mail import send_mail
-	    send_mail(u'Доступ на целительский сеанс', u"А вот и ссылка: %s" % settings.CONFERENCE_LINK, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
+	    send_mail(u'Доступ на целительский сеанс', u"Ссылка на транслацию: %s" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
 	else:
 	    from django.core.mail import send_mail
             send_mail(u'Доступ на целительский сеанс', u"Введённая Вами сумма не 500 руб. Если у Вас возникли проблемы пишите на mail.vspomnit.vse@gmail.com", settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
