@@ -21,7 +21,7 @@ urlpatterns = patterns('',
 
     url(r'^edu/', include('edu.urls')),
 
-    url(r'^$', views.home),
+    url(r'^$', views.pre),
     url(r'^home/$', views.home),
     url(r'^molitva/$', views.molitva),
     url(r'^contacts/$', views.contacts),

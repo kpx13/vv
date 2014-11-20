@@ -68,9 +68,12 @@ def page(request, page_name):
             return HttpResponseRedirect('/' + REDIRECT_URLS[page_name] + '/')
         raise Http404()
 
+def pre(request):
+    c = get_common_context(request)
+    return render_to_response('pre.html', c, context_instance=RequestContext(request))
+
 def home(request):
     c = get_common_context(request)
-    c['request_url'] = 'home'
     c['title'] = u'Главная'
     return render_to_response('home.html', c, context_instance=RequestContext(request))
 
