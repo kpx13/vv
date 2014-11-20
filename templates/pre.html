@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Вспомнить всё. Марат Ульмасбаев.</title>
+    <meta content="">
+    <style>
+        body {background: #000 url('/static/gradienta_3.jpg') repeat-x; height: 2170px; padding: 0; margin: 0; width: 100%}
+        div.container {background: #000 url('/static/Vspomnit_vse_glavnaya.jpg') no-repeat; height: 2170px; padding: 0; margin: 0 auto; width: 800px; }
+        .hidden {display: none}
+    </style>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  </head>
+  <body>
+    <div class='container'>
+        <button id='xyi' style='cursor: pointer; border: none; background-color: transparent;'>
+            <div style='width: 100%; height: 56px; position: absolute; top: 2012px; left: 570px; width: 200px; height: 56px;'>
+                <img src='/static/Vspomnit_vse_glavnaya11.jpg' class='hidden' style='margin: 0 auto; width: 200px; height: 56px' /></button>
+            </div>
+        </button>
+    </div>
+  </body>
+  <script>
+        window.scrollTo(0, document.body.scrollHeight);
+        $('#xyi').hover(function () {
+            $('#xyi img').removeClass('hidden');
+        },
+        function () {
+            $('#xyi img').addClass('hidden');
+        });
+        $('#xyi').click(function () {document.location.href='/home/'});
+    </script>
+</html>
