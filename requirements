@@ -7,3 +7,4 @@ django-admin-tools
 pytils
 django-registration==0.8
 django-livesettings==1.4-12
+django-mptt==0.7.1

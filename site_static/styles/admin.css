@@ -1,0 +1,55 @@
+body
+{
+    height: auto !important;
+    background: white;
+}
+
+div.dashboard-module-content {
+    background: white;
+}
+
+#header {
+    background: url('/static/public/img/bg/5.jpg') 50% 50%;
+    color: white;
+    background-size: cover;
+}
+
+#user-tools{
+/*     display: none; */
+}
+
+.dashboard-title{
+    display: none;
+}
+
+#header #branding h1 {
+    margin: 0;
+    padding: 5px 0px;
+    text-indent: -9999px;
+    background: transparent;
+    height: 40px;
+    background: url(../img/logo.png) 5px 5px no-repeat;
+}
+
+#header a
+{
+    color: #666 !important;
+    text-decoration: underline;
+}
+
+#header #branding a
+{
+    color: #000 !important;
+    font-size: large !important;
+}
+
+.grp-horizontal-list
+{
+}
+
+.grp-horizontal-list ul li
+{
+    list-style: none;
+    
+    
+}

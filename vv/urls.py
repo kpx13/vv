@@ -39,6 +39,7 @@ urlpatterns = patterns('',
     
     url(r'^conference/$', views.conference),
     url(r'^yandex/$', views.yandex),
+    url(r'^qa/$', views.qa),
     
     url(r'^services/$', views.services),
     url(r'^uslugi/$', views.services),

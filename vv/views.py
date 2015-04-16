@@ -17,6 +17,7 @@ from blog.models import BlogArticle
 from articles.models import Article
 from subscribe.forms import SubscribeForm
 from feedback.forms import FeedbackForm
+from qa.models import QA
 
 PAGINATION_COUNT = 10
 RIGHT_REVIEWS_COUNT = 3
@@ -234,3 +235,9 @@ def yandex(request):
         return HttpResponse(status=200)
     else:
         return HttpResponseRedirect('/conference/')
+    
+def qa(request):
+    c = get_common_context(request)
+    c['qa_tree'] = QA.objects.filter(parent=None)
+    return render_to_response('qa.html', c, context_instance=RequestContext(request))
+

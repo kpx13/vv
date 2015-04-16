@@ -99,17 +99,14 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.sites',
     'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
-    'django.contrib.admin',
-    'django.contrib.admindocs',
     'sorl.thumbnail',
     'livesettings',
+    'mptt',
     
     'pages',
     'review',
@@ -120,6 +117,7 @@ INSTALLED_APPS = (
     'edu',
     'users',
     'yandex',
+    'qa',
 )
 
 

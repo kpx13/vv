@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load mptt_tags %}
+
+{% block content %}
+        {% for top in qa_tree %}
+            <h2>{{ top.title }}</h2>
+            {{ top.content|safe }}
+            {% if not top.is_leaf_node %}
+                <div style='padding-left: 20px !important;'>
+                    {% for c in top.children.all %}
+                        <h4>{{ c.title }}</h4>
+                        {{ c.content|safe }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+{% endblock %}

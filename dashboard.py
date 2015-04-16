@@ -45,14 +45,11 @@ class CustomIndexDashboard(Dashboard):
             modules.ModelList(
                 title = u'Страницы и Контент',
                 models=(
-                    'menu.models.Menu',
                     'pages.models.Page',
-                    'gallery.models.Photo',
-                    'news.models.Article',
-                    'programs.models.Program',
                     'review.models.Review',
-                    'slideshow.models.Slider',
-                    'partners.models.Partner',
+                    'blog.models.BlogArticle',
+                    'articles.models.Article',
+                    'qa.models.QA',
                 ),
             )
         )
@@ -62,13 +59,21 @@ class CustomIndexDashboard(Dashboard):
             modules.ModelList(
                 title = u'Заявки и Подписки',
                 models=(
-                    'order.models.Order',
-                    'homeform.models.OrderH',
                     'subscribe.models.Subscribe',
+                    'feedback.models.Feedback',
                 ),
             )
         )
     
+        self.children.append(
+            modules.ModelList(
+                title = u'Обучение',
+                models=(
+                    'edu.models.Category',
+                    'edu.models.Section',
+                ),
+            )
+        )
         
         # append a recent actions module
         self.children.append(modules.RecentActions(_('Recent Actions'), 5))
@@ -79,6 +84,7 @@ class CustomIndexDashboard(Dashboard):
                 models=(
                     'django.contrib.auth.*',
                     'users.models.Profile',
+                    'users.models.Request',
                 ),
             )
         )
