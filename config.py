@@ -32,3 +32,11 @@ config_register(StringValue(
         description = u'Дата следующей конференции',
         default = u''
     ))
+
+config_register(PositiveIntegerValue(
+                            MYAPP_GROUP,
+        'CONFERENCE_PRICE',
+        description = u'Сумма ёбаного якобы пожертвования на конереницию',
+        help_text = u'с которого ты не платишь налоги',
+        default = 1,
+    ))
