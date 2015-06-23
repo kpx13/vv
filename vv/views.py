@@ -224,6 +224,10 @@ def conference(request):
 @csrf_exempt
 def yandex(request):
     if request.method == 'GET':
+	from yandex.models import Transaction
+	Transaction(message='asdf', email='asdf').save()	
+	from django.core.mail import send_mail
+        send_mail(u'Доступ на целительский сеанс', u"Ссылка на транслацию: %s" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspom$
         return HttpResponseRedirect('/conference/')
     from yandex.models import Transaction
     Transaction(message=str(request.POST.dict()), email=request.POST.get('label', u'!!! не заполнено')).save()
@@ -232,7 +236,7 @@ def yandex(request):
         send_mail(u'Доступ на целительский сеанс', u"Ссылка на транслацию: %s" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
     else:
         from django.core.mail import send_mail
-            send_mail(u'Доступ на целительский сеанс', u"Введённая Вами сумма не %d руб. Если у Вас возникли проблемы пишите на mail.vspomnit.vse@gmail.com" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
+        send_mail(u'Доступ на целительский сеанс', u"Введённая Вами сумма не %d руб. Если у Вас возникли проблемы пишите на mail.vspomnit.vse@gmail.com" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
         return HttpResponse(status=200)
         
     
