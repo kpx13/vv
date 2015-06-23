@@ -226,6 +226,8 @@ def yandex(request):
     from yandex.models import Transaction
     from django.core.mail import send_mail
     if request.method == 'GET':
+        Transaction(message=str(request.POST.dict()), email=request.POST.get('label', u'!!! не заполнено')).save()
+        send_mail(u'------', u"Ссылка на транслацию: %s" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, ['annkpx@gmail.com'])
         return HttpResponseRedirect('/conference/')
     Transaction(message=str(request.POST.dict()), email=request.POST.get('label', u'!!! не заполнено')).save()
     if request.POST.get('withdraw_amount', '0') == u'%d.00' % config_value('MyApp', 'CONFERENCE_PRICE'):
