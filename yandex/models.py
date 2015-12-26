@@ -14,5 +14,5 @@ class Transaction(models.Model):
         ordering = ['-request_date']
     
     def __unicode__(self):
-        return str(self.email)
+        return self.email
 

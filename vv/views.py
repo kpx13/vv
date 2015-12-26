@@ -34,6 +34,7 @@ SERVICES_AND_REVIEWS = {'obuchenie': 6,
 
 def get_common_context(request):
     c = {}
+    raise RuntimeError
     c['request_url'] = request.path
     c['is_debug'] = settings.DEBUG
     c['recent_reviews'] = Review.objects.filter(at_right=True).order_by('?')[:RIGHT_REVIEWS_COUNT]
@@ -226,14 +227,15 @@ def yandex(request):
     from yandex.models import Transaction
     from django.core.mail import send_mail
     if request.method == 'GET':
-        Transaction(message=str(request.POST.dict()), email=request.POST.get('label', u'!!! не заполнено')).save()
-        send_mail(u'------', u"Ссылка на транслацию: %s" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, ['annkpx@gmail.com'])
         return HttpResponseRedirect('/conference/')
-    Transaction(message=str(request.POST.dict()), email=request.POST.get('label', u'!!! не заполнено')).save()
-    if request.POST.get('withdraw_amount', '0') == u'%d.00' % config_value('MyApp', 'CONFERENCE_PRICE'):
-        send_mail(u'Доступ на целительский сеанс', u"Ссылка на транслацию: %s" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
-    else:
-        send_mail(u'Доступ на целительский сеанс', u"Введённая Вами сумма не %d руб. Если у Вас возникли проблемы пишите на mail.vspomnit.vse@gmail.com" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
+    Transaction(message=unicode(request.POST.dict()), email=request.POST.get('label', u'!!! не заполнено')).save()
+    try:
+    	if request.POST.get('amount', '0') == (u'%s.00' % config_value('MyApp', 'CONFERENCE_PRICE')):
+            send_mail(u'Доступ на целительский сеанс', u"Ссылка на транслацию: %s" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'mail.vspomnit.vse@gmail.com')])
+        else:
+            send_mail(u'Доступ на целительский сеанс', u"Введённая Вами сумма не %s руб. Если у Вас возникли проблемы пишите на mail.vspomnit.vse@gmail.com" % config_value('MyApp', 'CONFERENCE_LINK'), settings.DEFAULT_FROM_EMAIL, [request.POST.get('label', u'annkpx@gmail.com')])
+    except Exception as e:
+        send_mail(u'------', repr(e), settings.DEFAULT_FROM_EMAIL, ['annkpx@gmail.com'])
     return HttpResponse(status=200)
         
     
