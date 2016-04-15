@@ -38,13 +38,7 @@
                     {% else %}
                         <li><a href="/home/" title="Главная">Главная</a></li>
                     {% endif %}
-                    {% include 'menu_item.html' with u='uslugi' n='Услуги' %}
-                    {% include 'menu_item.html' with u='reviews' n='Отзывы' %}
                     {% include 'menu_item.html' with u='articles' n='Статьи' %}
-                    {% include 'menu_item.html' with u='blog' n='Блог' %}
-                    {% include 'menu_item.html' with u='molitva' n='Общая Молитва' %}
-                    {% include 'menu_item.html' with u='znaki-silyi' n='Знаки силы' %}
-                    {% include 'menu_item.html' with u='obo-mne' n='Обо мне' %}
                     {% include 'menu_item.html' with u='contacts' n='Контакты' %}
                 </ul>
                     
@@ -56,10 +50,10 @@
                     </div>
                     
                     <div id="right">
-                        {% block content_right %}
+                        <!--{% block content_right %}
                             {% include 'right_reviews.html' %}
                         {% endblock %}
-                        <br /><br /><br />
+                        <br /><br /><br />-->
 
                         {% if form_subscribe_send %}
                             {% if form_subscribe_send = '1' %}

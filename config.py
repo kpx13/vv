@@ -36,7 +36,6 @@ config_register(StringValue(
 config_register(PositiveIntegerValue(
                             MYAPP_GROUP,
         'CONFERENCE_PRICE',
-        description = u'Сумма ёбаного якобы пожертвования на конереницию',
-        help_text = u'с которого ты не платишь налоги',
+        description = u'Сумма якобы пожертвования на конереницию',
         default = 1,
     ))

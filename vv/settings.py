@@ -3,10 +3,8 @@ import os
 from os.path import abspath, join, dirname
 
 DEBUG = False
-TEMPLATE_DEBUG = False
-
 #DEBUG = True
-#TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
 )
@@ -20,7 +18,7 @@ DATETIME_FORMAT = '%d.%m.%Y'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'vv',   # Or path to database file if using sqlite3.
         'USER': 'vv',                      # Not used with sqlite3.
         'PASSWORD': 'vv',                  # Not used with sqlite3.

@@ -34,7 +34,8 @@ SERVICES_AND_REVIEWS = {'obuchenie': 6,
 
 def get_common_context(request):
     c = {}
-    raise RuntimeError
+    #if not request.user.is_superuser:
+    #	raise RuntimeError
     c['request_url'] = request.path
     c['is_debug'] = settings.DEBUG
     c['recent_reviews'] = Review.objects.filter(at_right=True).order_by('?')[:RIGHT_REVIEWS_COUNT]

@@ -1,14 +1,18 @@
 uwsgi:
     socket: /var/tmp/vv_uwsgi.sock
-    virtualenv: /var/www/ann/data/vv/env/
-    pythonpath: /var/www/ann/data/vv
+    pythonpath: /home/ann/vv
+    virtualenv: /home/ann/vv/env/
     env: DJANGO_SETTINGS_MODULE=vv.settings
     module: wsgi
-    daemonize: /var/www/ann/data/vv/logs/uwsgi.log
+    processes: 1
+    threads: 2
+
+    daemonize: /home/ann/vv/logs/uwsgi.log
     max-requests: 5000
     buffer-size: 32768
-    harakiri: 30
+    harakiri: 20
     reload-mercy: 8
     master: 1
     no-orphans: 1
-    touch-reload: /var/www/ann/data/vv/uwsgi
+    touch-reload: /home/ann/vv/uwsgi
+    vacuum=True

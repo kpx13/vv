@@ -1,10 +1,10 @@
 django==1.4.2
-Pillow
+Pillow==2.6.1
 django-ckeditor==4.0.2
 sorl-thumbnail
 django-keyedcache
-django-admin-tools
+django-admin-tools==0.5.2
 pytils
 django-registration==0.8
-django-livesettings==1.4-12
 django-mptt==0.7.1
+django-livesettings==1.4-12
