@@ -39,6 +39,7 @@ def get_common_context(request):
     c['request_url'] = request.path
     c['is_debug'] = settings.DEBUG
     c['recent_reviews'] = Review.objects.filter(at_right=True).order_by('?')[:RIGHT_REVIEWS_COUNT]
+    c['header'] = Page.get_by_slug('header').content
     c.update(csrf(request))
     
     form = SubscribeForm()
@@ -78,6 +79,9 @@ def pre(request):
 def home(request):
     c = get_common_context(request)
     c['title'] = u'Главная'
+    p = Page.get_by_slug('home')
+    if p:
+        c.update({'p': p})
     return render_to_response('home.html', c, context_instance=RequestContext(request))
 
 def molitva(request):

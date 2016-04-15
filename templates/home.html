@@ -1,14 +1,5 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="blocks">
-        <a href="/7-zakonov/" title="7 законов" class="picture-block"><img src="/media/new/1.jpg" alt="7 законов" /></a>
-	<a href="/potomki-noya/" title="О нас" class="picture-block"><img src="/media/new/2.jpg" alt="О нас" /></a>
-
-	<a href="/podyom-dushi/" title="Подъём души" class="picture-block"><img src="/media/new/3.jpg" alt="Подъём души" /></a>
-	<a href="/proshlyie-zhizni/" title="Прошлые жизни" class="picture-block"><img src="/media/new/4.jpg" alt="Прошлые жизни" /></a>
-
-	<a href="/obuchenie/" title="Обучение" class="picture-block"><img src="/media/new/5.jpg" alt="Обучение" /></a>
-	<a href="/otvetyi-na-voprosyi/" title="Ответы на вопросы" class="picture-block"><img src="/media/new/6.jpg" alt="Ответы на вопросы" /></a>
-    </div>
+    {{ p.content|safe }}
 {% endblock %}

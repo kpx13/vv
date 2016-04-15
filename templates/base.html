@@ -24,12 +24,7 @@
         {% block body %}
             <div class="wrap">
                 <header>
-                    <a id="logo" href='/home/'>
-                        <img src="/static/public/images/krest-logo.png" id="logo-img" />
-                        <div class="big">Вспомнить всё</div>
-                        <div class="small">Вспомнить Бога!</div>
-                    </a>
-                    <div id="slogan">Добро пожаловать в наш мир... Пробудись!</div>
+                    {{ header|safe }}
                 </header>
                 
                 <ul id="menu">
